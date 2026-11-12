@@ -1,0 +1,6 @@
+{
+  "appId": "fr.adeh.lanterne",
+  "appName": "Lanterne",
+  "webDir": "www",
+  "android": { "backgroundColor": "#050407" }
+}
