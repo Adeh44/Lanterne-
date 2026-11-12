@@ -28,6 +28,6 @@ jobs:
         with:
           tag_name: v${{ github.run_number }}
           name: Lanterne v${{ github.run_number }}
-          body: Télécharge Lanterne.apk depuis ton téléphone et installe-le (par-dessus l'ancienne version : ta partie est gardée).
+          body: "Télécharge Lanterne.apk depuis ton téléphone et installe-le. Une mise à jour s'installe par-dessus la précédente, ta partie est gardée."
           files: Lanterne.apk
           make_latest: true
