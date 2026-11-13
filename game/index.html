@@ -1269,33 +1269,33 @@ function boss2AI(e,dt,d,dx,dy){
 }
 // ----- récit des profondeurs -----
 const LETTER2=[
- {w:"lise",t:"« Papa, j'ai passé la grande porte pendant qu'Elle dormait, le ventre plein. Ici il fait chaud et la roche est rouge. »"},
- {w:"lise",t:"« Je chante ta chanson tout bas, et les bêtes font comme si j'étais une des leurs. Mais je ne me rappelle plus la fin. »"},
- {w:"lise",t:"« Je descends encore un peu. Juste un peu. Je mets cette lettre où tu marches toujours : au milieu. — Lise »"},
- {w:"moi",t:"Elle n'a pas laissé ses lettres tomber dans le puits. Elle les a portées. Elle est quelque part en dessous."}];
+ {w:"lise",t:"« Papa, j'ai passé la grande porte pendant qu'Elle dormait, le ventre plein. Ici, il fait chaud et la roche est rouge. »"},
+ {w:"lise",t:"« Je chante ta chanson tout bas, et les bêtes me laissent passer comme si j'étais des leurs. Mais je ne me souviens plus de la fin. »"},
+ {w:"lise",t:"« Je descends encore un peu. Rien qu'un peu. Je pose cette lettre là où tu marches toujours : au milieu. — Lise »"},
+ {w:"moi",t:"Elle n'a pas laissé tomber ses lettres dans le puits. Elle les a portées jusqu'ici. Lise est quelque part, sous tes pieds."}];
 const LISE_FOUND=[
  {w:"lisa",t:"…Papa ?"},
- {w:"lisa",t:"Non. Tu as sa lanterne, et tu marches comme lui. Mais tu me regardes comme si tu ne me connaissais pas."},
- {w:"lisa",t:"Je m'appelle Lise. Je suis descendue le chercher. Les bêtes ne me voient pas quand je chante tout bas… mais j'ai oublié la fin, alors je me suis cachée."},
+ {w:"lisa",t:"Non… Tu as sa lanterne, et tu marches comme lui. Mais tu me regardes comme un étranger."},
+ {w:"lisa",t:"Je m'appelle Lise. Je suis descendue chercher mon papa. Quand je chante tout bas, les bêtes ne me voient pas… mais j'ai oublié la fin de la chanson, alors je me suis cachée."},
  {w:"moi",t:"Reste derrière moi. Je te ramène à l'escalier."}];
 const LISE_UP=[
- {w:"lisa",t:"Je remonte chez Mamie. Elle va crier, et après elle va pleurer, et après elle fera semblant que non."},
- {w:"lisa",t:"Lui, il est en dessous. Tout en bas, là où ça chante. Dis-lui que le cheval bleu l'attend à la maison."}];
+ {w:"lisa",t:"Je remonte chez Mamie. Elle va crier, puis pleurer, puis jurer qu'elle n'a jamais pleuré."},
+ {w:"lisa",t:"Lui, il est plus bas. Tout au fond, là où ça chante. Dis-lui que le cheval bleu l'attend à la maison."}];
 const DOCS2=[
- "« Compagnie des Mines, note interne : le puits n°3 n'a pas été creusé. Il était là avant la mine. Nous n'avons fait que retirer le couvercle. »",
- "« Inventaire des pertes. Hommes : 12. Lanternes : 0. Les lanternes remontent toujours. On ne sait pas qui les rapporte. »",
- "« À qui trouvera ceci : ceux qui tombent reviennent. Pas tout à fait. Comptez vos mineurs le matin, et recomptez-les le soir. »",
- "« Dernier relevé de profondeur : la sonde descend plus vite qu'on ne déroule le câble. Conclusion du géomètre : ce n'est pas un trou. C'est une gorge. »"];
+ "« Compagnie des Mines, note interne. Le puits n° 3 n'a pas été creusé : il était là avant la mine. Nous n'avons fait qu'en soulever le couvercle. »",
+ "« Inventaire des pertes. Hommes : 12. Lanternes : 0. Les lanternes remontent toujours. Personne ne sait qui les rapporte. »",
+ "« À qui trouvera ceci : ceux qui tombent reviennent. Plus tout à fait les mêmes. Comptez vos mineurs le matin. Recomptez-les le soir. »",
+ "« Dernier relevé. La sonde descend plus vite que le câble ne se déroule. Conclusion du géomètre : ce n'est pas un trou. C'est une gorge. »"];
 function onBossDead2(){
  L.dimK=1;S.won2=1;if(!S.echoes.some(e=>e.first)){S.echoes.push({floor:20,stash:0,born:Date.now(),calm:true,first:true});S.echoes.sort((a,b)=>b.floor-a.floor);if(S.echoes.length>3)S.echoes.length=3}save();lull(.05,0);
- say([{w:"prem",t:"Assez. … Assez. Tu frappes comme quelqu'un que j'ai connu."},
-  {w:"prem",t:"Montre ta lanterne. …La même. Le même verre fêlé, la même anse tordue. Il n'en existe pourtant qu'une."},
-  {w:"prem",t:"Je ne sais plus de qui je suis l'Écho. Le puits m'a laissé une chanson et l'envie de descendre. Le nom, il l'a gardé."}].concat(S.lise?[
+ say([{w:"prem",t:"Assez… Assez. Tu frappes comme quelqu'un que j'ai connu."},
+  {w:"prem",t:"Montre-moi ta lanterne. …La même. Le même verre fêlé, la même anse tordue. Et pourtant, il n'en existe qu'une."},
+  {w:"prem",t:"Je ne sais plus de qui je suis l'Écho. Le puits m'a laissé une chanson et l'envie de descendre. Mon nom, il l'a gardé pour lui."}].concat(S.lise?[
   {w:"moi",t:"Cette chanson… Une petite fille la chante, là-haut."},
   {w:"prem",t:"…Une petite fille. Oui. Il y avait une petite fille."}]:[],[
-  {w:"prem",t:"Écoute. Sous cette salle, quelque chose a faim. Tant que je chante, ça dort. Je ne peux pas remonter."},
-  {w:"prem",t:"Mais je peux t'apprendre le premier couplet. Les bêtes hésitent quand elles l'entendent."},
-  {w:"prem",t:"Les autres couplets sont plus bas. Chacun derrière une porte. Je n'ai jamais passé la suivante."},
+  {w:"prem",t:"Écoute. Sous cette salle, quelque chose a faim. Tant que je chante, cela dort. C'est pour cela que je ne remonterai pas."},
+  {w:"prem",t:"Mais je peux t'apprendre le premier couplet. Quand les bêtes l'entendent, elles hésitent."},
+  {w:"prem",t:"Les autres couplets sont plus bas, chacun derrière une porte. Je n'ai jamais franchi la suivante."},
   {w:"prem",t:"Va. Et si tu trouves mon nom en chemin… rapporte-le-moi."}]));
 }
 
@@ -1456,7 +1456,7 @@ function updLuci(dt){
 function updWater(dt){
  if(L.tide){L.tide.t+=dt;const u=L.tide.t%TIDE_PER;L.wl=tideL(L.tide.t);
   if(u>=26&&u<26+dt){noise(3,110,.07,.5);tone("sine",55,48,3,.05)} // le grondement qui annonce la montée
-  if(u>=31&&u<31+dt&&!S.seen.tide&&state==="play"){S.seen.tide=1;save();say([{w:"moi",t:"L'eau monte. Lentement, sans un bruit, mais elle monte."}])}}
+  if(u>=31&&u<31+dt&&!S.seen.tide&&state==="play"){S.seen.tide=1;save();say([{w:"moi",t:"L'eau monte. Lentement, sans un bruit. Mais elle monte."}])}}
  if(L.basins)updEcluse(dt);
  if(Math.abs(L.wl-L.wlc)>.025||L.basins)wClass();
  const i=Math.floor(P.y)*L.w+Math.floor(P.x),wt=L.wt[i];P.wt=wt;
@@ -1468,7 +1468,7 @@ function updWater(dt){
   if(wt){const px=L.fx[i]*cs(i),py=L.fy[i]*cs(i),pw=Math.hypot(px,py);moveC(P,px*dt,py*dt);
    if(pw>.3){if(Math.random()<dt*pw*4)ripple(P.x-px/pw*.35+(Math.random()-.5)*.3,P.y-py/pw*.35+.1,0); // l'eau bute contre toi
     P.curS=(P.curS||0)-dt;if(P.curS<=0){P.curS=.9;noise(1,420,.02+.02*Math.min(1,pw/1.5),1.2)}
-    P.curT=(P.curT||0)+dt;if(P.curT>1.2&&!S.seen.cur&&state==="play"){S.seen.cur=1;save();say([{w:"moi",t:"Le courant me tire. L'eau file quelque part, et elle veut m'emmener."}])}}else P.curT=0}
+    P.curT=(P.curT||0)+dt;if(P.curT>1.2&&!S.seen.cur&&state==="play"){S.seen.cur=1;save();say([{w:"moi",t:"Le courant te tire. L'eau file quelque part, et elle voudrait t'emporter avec elle."}])}}else P.curT=0}
   for(const e of L.en){if(e.aq||e.type==="boss")continue;const k=Math.floor(e.y)*L.w+Math.floor(e.x);if(L.wt[k])moveC(e,L.fx[k]*cs(k)*.6*dt,L.fy[k]*cs(k)*.6*dt)}
   for(const q of L.corps){const k=Math.floor(q.y)*L.w+Math.floor(q.x);if(!L.wt[k])continue;const nx=q.x+L.fx[k]*cs(k)*.8*dt,ny=q.y+L.fy[k]*cs(k)*.8*dt;if(!solid(Math.floor(nx),Math.floor(ny))){q.x=nx;q.y=ny}}
   for(const g of gobs){if(!g.landed)continue;const k=Math.floor(g.y)*L.w+Math.floor(g.x);if(!L.wt[k])continue;const nx=g.x+L.fx[k]*cs(k)*.8*dt,ny=g.y+L.fy[k]*cs(k)*.8*dt;if(!solid(Math.floor(nx),Math.floor(ny))){g.x=nx;g.y=ny}}
@@ -1773,7 +1773,7 @@ function lampGone(e){
  const i=L.en.indexOf(e);if(i>=0)L.en.splice(i,1);L.lampE=null;save()}
 function lampAI(e,dt,d,dx,dy){
  const s=lmpS();e.lt+=dt;e.cd-=dt;
- if(e.vis&&!s.met&&state==="play"){s.met=1;save();say([{w:"moi",t:"Quelque chose de long et maigre, une perche à la main. Il m'a vu avant que je le voie. Il est reparti dans le noir sans se presser."}])}
+ if(e.vis&&!s.met&&state==="play"){s.met=1;save();say([{w:"moi",t:"Une silhouette longue et maigre, une perche à la main. Elle t'a vu bien avant que tu la voies. Elle retourne au noir, sans se presser."}])}
  if(e.ls==="leave"){const t=e.wp;steer(e,t.x,t.y,LMP_FLEE,dt);e.face=Math.atan2(t.y-e.y,t.x-e.x);if((Math.hypot(t.x-e.x,t.y-e.y)<.8&&!e.vis)||e.lt>7)lampGone(e);return}
  if(e.wind>0){e.wind-=dt;if(e.wind<=0){if(d<1.5){hurtP(e.dmg);shake=.2}lampFlee(e,false)}return}
  if(d<1.1&&e.ls!=="sch"&&e.cd<=0){e.wind=.35;e.cd=2;e.face=Math.atan2(dy,dx);SPAT=earAt(e.x,e.y);tone("sawtooth",700,200,.15,.04);SPAT=null;return}
@@ -1791,7 +1791,7 @@ function lampAI(e,dt,d,dx,dy){
 function lampDo(e,p){
  const near=Math.hypot(p.x-P.x,p.y-P.y)<14;
  if(p.k==="snuf"){const i=L.lights.indexOf(p.l);if(i<0)return;L.lights.splice(i,1);L.polys.splice(i,1);L.snuf.push({x:p.l.x,y:p.l.y,t:SNUF_SMOKE,l:p.l,rl:0});S.st.snuf=(S.st.snuf||0)+1;
-  if(near){SPAT=earAt(p.l.x,p.l.y);noise(.5,1200,.05,1);tone("sine",300,120,.3,.02);SPAT=null;if(!S.seen.snuf1&&state==="play"){S.seen.snuf1=1;save();say([{w:"moi",t:"Une lampe vient de s'éteindre. Pas un souffle d'air, pourtant. On a pincé la mèche."}])}}}
+  if(near){SPAT=earAt(p.l.x,p.l.y);noise(.5,1200,.05,1);tone("sine",300,120,.3,.02);SPAT=null;if(!S.seen.snuf1&&state==="play"){S.seen.snuf1=1;save();say([{w:"moi",t:"Une lampe vient de s'éteindre. Pourtant, pas un souffle d'air. Quelqu'un a pincé la mèche."}])}}}
  else if(p.k==="hoist"){const q=p.q;q.st=1;S.st.hoist=(S.st.hoist||0)+1;sfxAt(emit(q.x,q.y+.4,LMP_NOISE,"boum",e),()=>{SFX.thud();noise(.4,300,.18,.6)});burst(q.x,q.y+.4,"#6a4a28",12,3);if(near)shake=Math.max(shake,.12)}
  else if(p.k==="peb"){L.peb.push({x:p.x,y:p.y,t:40,s:(Math.random()*9)|0});S.st.peb=(S.st.peb||0)+1;sfxAt(emit(p.x,p.y,LMP_NOISE*.8,"boum",e),()=>{noise(.3,900,.12,1);later(120,()=>noise(.2,600,.1,1))});burst(p.x,p.y,"#6a6258",6,2)}
  else if(p.k==="bait"&&!p.done&&L.hung){L.corps.push({x:p.x,y:p.y,meat:3,m0:3,bait:false,hold:false});S.st.lbait=(S.st.lbait||0)+1;
@@ -1812,13 +1812,13 @@ function mkEnemy(type,x,y,f){
 let P,run,bul=[],parts=[],tele=[],nums=[],paused=true,state="camp",tm=0;
 const MATN={chit:"chitine",gland:"glande",crist:"cristal",brai:"braise",pale:"éclat pâle",nacr:"nacre noire"},MATI={chit:"🦂",gland:"🧪",crist:"💎",brai:"🔥",pale:"⚪",nacr:"🐚"};
 const MATS=["Fonte","Acier","Acier trempé","Argent du puits","Fer de braise","Acier pâle","Acier nacré"],MECHE=["Coton","Chanvre","Lin tressé","Mèche de nacre"],VERRE=["Verre soufflé","Cristal du puits","Verre de braise"],REFL=["Sans réflecteur","Cuivre","Argent poli","Pierre pâle polie"];
-const ARM={cuir:{n:"Cuir bouilli",d:"Léger, équilibré",hp:100,per:12,det:1,red:0},chit:{n:"Chitine cousue",d:"Silencieuse : on te repère de moins loin",hp:90,per:10,det:.7,red:0},plaq:{n:"Plaques de fonte",d:"Encaisse 20 % des coups, mais bruyante",hp:150,per:22,det:1.35,red:.2}};
+const ARM={cuir:{n:"Cuir bouilli",d:"Léger, équilibré",hp:100,per:12,det:1,red:0},chit:{n:"Chitine cousue",d:"Silencieuse : on te repère de moins loin",hp:90,per:10,det:.7,red:0},plaq:{n:"Plaques de fonte",d:"Encaisse 20 % des coups, mais fait du bruit",hp:150,per:22,det:1.35,red:.2}};
 const st={dmg:()=>10*Math.pow(1.22,S.up.cal)*[1,1.3,1.7,2.3,3.1,4.2,5.8,8][S.up.mat]*(S.muz===2?MUZ_DMG:1)*(1+csv("dmg")),rate:()=>.3*Math.pow(.93,S.up.meca)/(1+csv("rate")+.6*(P&&P.raf||0)),spread:()=>.12*Math.pow(.8,S.up.ray),bspd:()=>11+S.up.ray*.6,rng:()=>6.5+S.up.ray*.25,
  burn:()=>[1,.78,.6,.45][S.up.meche]/(1+csv("oil"))*(CM.meche?.6:1),half:()=>[0,.12,.2][S.up.verre],reach:()=>[1,1.12,1.25,1.4][S.up.refl],moil:()=>100+15*S.up.res,
  mhp:()=>{const a=ARM[S.arm.eq];return Math.round((a.hp+a.per*S.arm[S.arm.eq])*(S.dbl?DBL_K:1)*(1+csv("hp")))},det:()=>ARM[S.arm.eq].det*(1-Math.min(.6,csv("vis"))),red:()=>ARM[S.arm.eq].red};
 const capLvl=()=>3+S.up.mat*3;
 const GAD={
- gren:{n:"Grenade",i:"💣",d:"Explose après un instant. Fait du bruit.",buy:[60,{gland:4}],up:l=>[Math.round(45*Math.pow(1.7,l)),{gland:2+l*2}]},
+ gren:{n:"Grenade",i:"💣",d:"Explose au bout d'un instant, avec fracas.",buy:[60,{gland:4}],up:l=>[Math.round(45*Math.pow(1.7,l)),{gland:2+l*2}]},
  lure:{n:"Leurre sonore",i:"🔔",d:"Attire les ennemis là où il tombe.",buy:[50,{chit:4}],up:l=>[Math.round(40*Math.pow(1.7,l)),{chit:2+l*2}]},
  smoke:{n:"Fumigène",i:"🌫",d:"Personne ne te voit dans le nuage.",buy:[80,{chit:3,gland:3}],up:l=>[Math.round(55*Math.pow(1.7,l)),{chit:1+l,gland:1+l}]}};
 const gadMax=()=>S.gad.eq?2+S.gad[S.gad.eq]:0;
@@ -1887,16 +1887,16 @@ function drawGobs(c,ox,oy,post){
   if(post&&g.k==="smoke"){const al=Math.min(1,g.t)*.28;for(let k=0;k<9;k++){const a=k/9*TAU+tm*.3,r=g.r*T*(.35+.4*((k*37)%10)/10);c.fillStyle=`rgba(150,150,160,${al})`;c.beginPath();c.arc(x+Math.cos(a)*r*.7,y+Math.sin(a)*r*.6,g.r*T*.45,0,TAU);c.fill()}}}
 }
 // ================= MISSIONS =================
-const MIS={clean:{n:"Nettoyer",d:"Élimine tous les dangers de l'étage"},sauver:{n:"Sauvetage",d:"Un mineur est piégé quelque part"},doc:{n:"Document",d:"Récupère un document. Sans alerte, il vaut double"},sabot:{n:"Sabotage",d:"Détruis le nid avant qu'il n'éclose"},boss:{n:"La Mère",d:"Elle garde la porte"},boss2:{n:"La Chambre du Chant",d:"La voix vient d'ici"},boss3:{n:"L'Écluse",d:"Quelque chose garde le passage"}};
+const MIS={clean:{n:"Nettoyer",d:"Élimine tous les dangers de l'étage"},sauver:{n:"Sauvetage",d:"Un mineur est piégé quelque part"},doc:{n:"Document",d:"Récupère un document. Sans donner l'alerte, il vaut double"},sabot:{n:"Sabotage",d:"Détruis le nid avant qu'il n'éclose"},boss:{n:"La Mère",d:"Elle garde la porte"},boss2:{n:"La Chambre du Chant",d:"La voix vient d'ici"},boss3:{n:"L'Écluse",d:"Quelque chose garde le passage"}};
 const MINERS=["Bertin","Gaspard","Odile","Firmin","Rosalie","Anselme","Mathurin","Clotilde","Honoré","Léonce","Victorine"];
 const DOCS=[
- "« Rapport de la Compagnie, puits n°3 : les mineurs signalent des chants au fond. Consigne : continuer à creuser. »",
- "« Le contremaître interdit d'allumer des lampes à l'étage 4. Personne ne sait pourquoi. Il refuse de l'expliquer. »",
- "« Facture : 40 lanternes, verre renforcé. Destinataire : Mme Suie. Datée d'il y a… cinquante-deux ans. »",
- "« Note à la main : ne descendez pas avec la lanterne de la famille Suie. Elle ne vous appartient pas. Elle appartient au puits. »",
- "« Registre : onze mineurs descendus. Le douzième a d'abord refusé. Il a dit qu'il avait une petite fille, Lise. »",
- "« Ordre de fermeture du puits. Tampon : ANNULÉ. Ajouté au crayon, d'une écriture tremblante : il a faim. »"];
-const MIS_INTRO={sauver:"J'entends quelqu'un appeler à l'aide… faiblement. Il est vivant.",doc:"Un sceau de la Compagnie sur le sol. Leurs archives doivent traîner à cet étage.",sabot:"Ce bourdonnement… un nid. S'il éclot, l'étage sera infesté."};
+ "« Rapport de la Compagnie, puits n° 3. Les mineurs signalent des chants au fond. Consigne : continuer de creuser. »",
+ "« Le contremaître interdit d'allumer les lampes au quatrième étage. Personne ne sait pourquoi, et il refuse de le dire. »",
+ "« Facture : 40 lanternes, verre renforcé. Destinataire : Mme Suie. La date remonte à cinquante-deux ans. »",
+ "« Note manuscrite : ne descendez pas avec la lanterne de la famille Suie. Elle n'est pas à vous. Elle est au puits. »",
+ "« Registre : onze mineurs descendus. Le douzième a d'abord refusé. Il a dit qu'il avait une petite fille. Lise. »",
+ "« Ordre de fermeture du puits. Tampon : ANNULÉ. Au crayon, d'une main tremblante : il a faim. »"];
+const MIS_INTRO={sauver:"Quelqu'un appelle à l'aide, faiblement. Il est vivant.",doc:"Un sceau de la Compagnie, sur le sol. Leurs archives doivent traîner quelque part à cet étage.",sabot:"Ce bourdonnement… Un nid. S'il éclot, l'étage grouillera de bêtes."};
 function missionIntro(){if(L.village)return;const m=L.npc&&L.npc.lise?{n:"Une voix",d:"Quelqu'un fredonne, tout bas, à cet étage"}:MIS[L.mis];const b=$("banner");b.innerHTML=m.n.toUpperCase()+"<small>"+m.d+"</small>";b.classList.remove("hide");b.style.opacity=1;clearTimeout(b._t);b._t=setTimeout(()=>{b.style.opacity=0;setTimeout(()=>b.classList.add("hide"),1000)},2600);
  if(MIS_INTRO[L.mis]&&!S.seen["mis_"+L.mis]&&!(L.npc&&L.npc.lise)){S.seen["mis_"+L.mis]=1;save();setTimeout(()=>{if(state==="play")say([{w:"moi",t:MIS_INTRO[L.mis]}])},900)}}
 function missionDone(){const m=L.mis;if(m==="clean"||m==="boss"||m==="boss2"||m==="boss3")return!L.en.some(e=>!wild(e));if(m==="doc")return!!L.docTaken;if(m==="sabot")return!!L.nestDead;if(m==="sauver")return L.npc&&L.npc.st==="follow";return false}
@@ -1904,7 +1904,7 @@ function hitNest(v){const n=L.nest;n.hp-=v;n.flash=.08;SFX.hit();addNum(n,v,fals
   for(let i=0;i<3;i++){const e=mkEnemy("ramp",n.x+(Math.random()-.5)*1.5,n.y+(Math.random()-.5)*1.5,L.f);e.hp*=.5;e.mhp*=.5;e.st="chase";L.en.push(fit(e,n.x,n.y))}
   const v2=Math.round(12*L.f*deep(L.f)*(run.rested?1.5:1));run.loot+=v2;run.mat.gland+=2;floatTxt(n.x,n.y,"+"+v2+" ⛏ +2🧪 · FUIS !")}}
 function updMission(dt){
- const n=L.npc;if(n&&!n.gone){if(n.st==="trapped"){if(Math.hypot(n.x-P.x,n.y-P.y)<1.1){n.st="follow";SFX.stairs();say(n.lise?LISE_FOUND:[{w:"mineur",t:"Tu… tu es réel ? Je m'appelle "+n.name+". Ça fait des semaines que je me cache ici."},{w:"mineur",t:"Sors-moi de là. Je reste derrière toi, promis."}])}}
+ const n=L.npc;if(n&&!n.gone){if(n.st==="trapped"){if(Math.hypot(n.x-P.x,n.y-P.y)<1.1){n.st="follow";SFX.stairs();say(n.lise?LISE_FOUND:[{w:"mineur",t:"Tu… tu es réel ? Je m'appelle "+n.name+". Je me cache ici depuis des semaines."},{w:"mineur",t:"Sors-moi de là. Je reste derrière toi, promis."}])}}
   else if(n.st==="follow"){const d=Math.hypot(P.x-n.x,P.y-n.y);if(d>1.3){steer(n,P.x,P.y,d>4?4.2:3.3,dt);n.moving=true}else n.moving=false}}
  if(L.nest)L.nest.flash=Math.max(0,(L.nest.flash||0)-dt);
  if(L.nest&&!L.nestDead)L.dyn.push({x:L.nest.x,y:L.nest.y,a:0,half:Math.PI,len:2.2+.4*Math.sin(tm*3),c:[220,90,255],al:.45});
@@ -1949,7 +1949,7 @@ function update(dt){
  if(fireB._s!==!!stabTarget){fireB._s=!!stabTarget;fireB.classList.toggle("stab",fireB._s);fireB.innerHTML=fireB._s?"NEUTRA-<br>LISER":"TIR"}
  // flamme bleue : le tir automatique se retient (le tir manuel, lui, reste ton affaire)
  const gasP=AIR.gas&&AIR.GS[Math.floor(P.y)*L.w+Math.floor(P.x)]>=PROP;
- if(gasP&&P.auto&&tgt&&!stabTarget&&tm-(P.gasMsg||-9)>6){P.gasMsg=tm;floatTxt(P.x,P.y-1,"Flamme bleue… ton doigt se retient")}
+ if(gasP&&P.auto&&tgt&&!stabTarget&&tm-(P.gasMsg||-9)>6){P.gasMsg=tm;floatTxt(P.x,P.y-1,"Flamme bleue… ton doigt se fige sur la détente")}
  const wantFire=((P.auto&&tgt&&!stabTarget&&!gasP)||(inp.fire&&!stabTarget))&&P.wt!==2; // à la nage, pas de main libre pour tirer
  if(wantFire&&P.cd<=0){
   const a=tgt?Math.atan2(tgt.y-P.y,tgt.x-P.x):P.face;
@@ -2041,7 +2041,7 @@ function update(dt){
   else if(it.k==="page"){S.seen["pg_"+it.id]=1;save();SFX.pick();say(PAGES[it.id].t)}
   else if(it.k==="letter"){S.letter=true;save();say(LETTER)}
   else if(it.k==="let2"){S.seen.let2=1;save();say(LETTER2)}
-  else if(it.k==="echo"){const v=it.ref.stash;run.loot+=v;it.ref.stash=0;if(it.ref.mat){for(const q in it.ref.mat)run.mat[q]=(run.mat[q]||0)+it.ref.mat[q];it.ref.mat=null}it.ref.calm=true;save();SFX.stairs();const lore=ECHO_LORE[S.lore||0];if(lore)S.lore=(S.lore||0)+1;save();say([{w:"echo",t:"Tu es revenu… Je n'y croyais plus. Tiens, c'est à toi, je l'ai gardé au chaud."},{w:"echo",t:"(+"+fmt(v)+" minerai récupéré)"}].concat(lore?[{w:"echo",t:lore}]:[]).concat([{w:"echo",t:"Je me sens plus calme, maintenant. Je vais creuser pour toi."}]))}
+  else if(it.k==="echo"){const v=it.ref.stash;run.loot+=v;it.ref.stash=0;if(it.ref.mat){for(const q in it.ref.mat)run.mat[q]=(run.mat[q]||0)+it.ref.mat[q];it.ref.mat=null}it.ref.calm=true;save();SFX.stairs();const lore=ECHO_LORE[S.lore||0];if(lore)S.lore=(S.lore||0)+1;save();say([{w:"echo",t:"Te revoilà… Je n'y croyais plus. Tiens, c'est à toi. Je te l'ai gardé au chaud."},{w:"echo",t:"(+"+fmt(v)+" minerai récupéré)"}].concat(lore?[{w:"echo",t:lore}]:[]).concat([{w:"echo",t:"Je suis plus calme, maintenant. Je vais creuser pour toi."}]))}
   L.items.splice(i,1)}}
  // ouverture de l'escalier
  updGobs(dt);updMission(dt);updWaves(dt);updAir(dt);updDeep(dt);if(L.wt)updWater(dt);if(L.rail)updComp(dt);
@@ -2297,53 +2297,53 @@ function showPop(){const p=popQ[0];if(!p){$("pop").classList.add("hide");if((sta
  $("pop").classList.remove("hide")}
 
 const INTRO=[
- {w:"suie",t:"Approche, toi. Non, pas si près, je suis aveugle, pas sourde. Tes pas sentent la poussière fraîche."},
- {w:"suie",t:"Le puits s'est ouvert il y a trois lunes, juste sous la vieille mine. Douze mineurs y sont descendus. Aucun n'est remonté."},
+ {w:"suie",t:"Approche. Non, pas si près : je suis aveugle, pas sourde. Tes pas sentent la poussière fraîche."},
+ {w:"suie",t:"Le puits s'est ouvert il y a trois lunes, juste sous la vieille mine. Douze mineurs y sont descendus. Pas un n'est remonté."},
  {w:"suie",t:"Mon fils était le douzième."},
- {w:"suie",t:"Prends cette lanterne. Elle a toujours été dans la famille… enfin, c'est ce qu'on m'a toujours dit."},
- {w:"suie",t:"En bas, la lumière te protège, mais elle te trahit aussi. Les choses qui vivent là-dessous la voient de loin."},
- {w:"suie",t:"Descends. Nettoie. Remonte avant que l'huile s'épuise. Et si tu meurs… eh bien, on verra ce que le puits en fait."}];
+ {w:"suie",t:"Prends cette lanterne. Elle a toujours été dans la famille. Du moins, c'est ce qu'on m'a toujours raconté."},
+ {w:"suie",t:"En bas, la lumière te protège. Mais elle te trahit aussi : les choses qui vivent dans le noir la voient de très loin."},
+ {w:"suie",t:"Descends. Nettoie. Remonte avant que l'huile ne s'épuise. Et si tu meurs… eh bien, nous verrons ce que le puits fera de toi."}];
 const PAGES={
- guet:{f:1,t:[{w:"carnet",t:"« Jour 3. Il y a une grande chose pâle plus bas. Elle ne mord pas. Elle regarde. »"},{w:"carnet",t:"« Quand Bertin a levé sa lampe, elle a crié. Tout le noir s'est mis à courir vers nous. »"},{w:"carnet",t:"« Baisser la mèche. Toujours baisser la mèche avant d'entrer quelque part. »"}]},
- dorm:{f:2,t:[{w:"carnet",t:"« Jour 5. Les plafonds bougent. J'ai cru à des racines. Ce n'étaient pas des racines. »"},{w:"carnet",t:"« Ils dorment tant qu'on ne les éclaire pas. Ou qu'on ne tire pas. »"}]},
- elite:{f:3,t:[{w:"carnet",t:"« Jour 8. Celui aux yeux dorés est revenu. Il est plus gros que les autres, et il ne recule jamais. »"},{w:"carnet",t:"« Sa carapace est pleine de choses brillantes. Il faudrait être fou pour aller les chercher. Je crois que je deviens fou. »"}]},
- oreil:{f:6,t:[{w:"carnet",t:"« Jour 14. Odile a éternué. Une seule fois. La chose était sur nous avant la fin de l'éternuement. »"},{w:"carnet",t:"« Ça n'a pas d'yeux. Ma lampe ne lui fait rien. Mais elle a tourné la tête quand j'ai armé mon fusil. On l'appelle l'Oreillard. »"},{w:"carnet",t:"« Marcher lentement. Ne pas tirer. Ou alors tirer… et ne surtout pas rester là où on a tiré. »"}]},
- vent:{f:1,t:[{w:"carnet",t:"« Jour 4. Ma flamme s'est couchée toute seule. Il n'y a pourtant pas de vent sous la terre. »"},{w:"carnet",t:"« Firmin dit que le puits respire. Il inspire longtemps, il souffle court, et entre les deux il se retient. J'ai compté : c'est vrai. »"},{w:"carnet",t:"« La flamme penche vers là où l'air s'en va. Devant un mur plein, elle penchait quand même. On a tapé dessus. Il sonnait creux. »"}]},
+ guet:{f:1,t:[{w:"carnet",t:"« Jour 3. Il y a une grande chose pâle, plus bas. Elle ne mord pas. Elle regarde. »"},{w:"carnet",t:"« Bertin a levé sa lampe, et la chose a hurlé. Alors tout le noir s'est mis à courir vers nous. »"},{w:"carnet",t:"« Baisser la mèche. Toujours baisser la mèche avant d'entrer quelque part. »"}]},
+ dorm:{f:2,t:[{w:"carnet",t:"« Jour 5. Les plafonds bougent. J'ai cru à des racines. Ce n'étaient pas des racines. »"},{w:"carnet",t:"« Ils dorment tant qu'on ne les éclaire pas. Et tant qu'on ne tire pas. »"}]},
+ elite:{f:3,t:[{w:"carnet",t:"« Jour 8. Celui aux yeux dorés est revenu. Il est plus gros que les autres, et il ne recule jamais. »"},{w:"carnet",t:"« Sa carapace est pleine de choses qui brillent. Il faudrait être fou pour aller les chercher. Je crois que je deviens fou. »"}]},
+ oreil:{f:6,t:[{w:"carnet",t:"« Jour 14. Odile a éternué. Une seule fois. La chose était sur nous avant la fin de l'éternuement. »"},{w:"carnet",t:"« Ça n'a pas d'yeux. Ma lampe ne lui fait rien. Mais il a tourné la tête au moment où j'armais mon fusil. On l'appelle l'Oreillard. »"},{w:"carnet",t:"« Marcher lentement. Ne pas tirer. Ou alors tirer… et ne surtout pas rester là où on a tiré. »"}]},
+ vent:{f:1,t:[{w:"carnet",t:"« Jour 4. Ma flamme s'est couchée toute seule. Il n'y a pourtant pas de vent, sous la terre. »"},{w:"carnet",t:"« Firmin dit que le puits respire. Il inspire longtemps, il souffle court, et entre les deux il se retient. J'ai compté : c'est vrai. »"},{w:"carnet",t:"« La flamme penche du côté où l'air s'en va. Devant un mur plein, elle penchait quand même. On a frappé dessus : il sonnait creux. »"}]},
  flair:{f:3,t:[{w:"carnet",t:"« Jour 9. Ils nous sentent. Gaspard était caché, immobile, lampe baissée. Mais le courant allait de lui vers eux. »"},{w:"carnet",t:"« Regarder la poussière dans la lumière avant d'avancer. Si elle file vers eux, ils savent déjà. Si elle vient vers moi, je n'existe pas. »"}]},
- faim:{f:4,t:[{w:"carnet",t:"« Jour 10. On a abattu un Rampant près de la grande salle. Le temps de recharger, deux autres étaient dessus. Pas sur nous. Sur lui. »"},{w:"carnet",t:"« Ils ont faim. Tous. Une bête qui mange ne regarde plus rien. Une bête qui a mangé se couche sur place et dort, et on passe à côté sur la pointe des pieds. »"},{w:"carnet",t:"« Clotilde a coupé un morceau de la carcasse et l'a posé dans la galerie d'à côté. Le courant a fait le reste : la salle s'est vidée toute seule. »"},{w:"carnet",t:"« Seulement, la viande, ça se sent. Tant qu'on l'avait sur nous, tout le puits savait où on était. »"}]},
+ faim:{f:4,t:[{w:"carnet",t:"« Jour 10. On a abattu un Rampant près de la grande salle. Le temps de recharger, deux autres étaient dessus. Pas sur nous : sur lui. »"},{w:"carnet",t:"« Ils ont faim. Tous. Une bête qui mange ne regarde plus rien. Une bête qui a mangé se couche sur place et dort, et on passe à côté sur la pointe des pieds. »"},{w:"carnet",t:"« Clotilde a coupé un morceau de la carcasse et l'a posé dans la galerie d'à côté. Le courant a fait le reste : la salle s'est vidée toute seule. »"},{w:"carnet",t:"« Seulement, la viande, ça se sent. Tant qu'on la gardait sur nous, tout le puits savait où nous étions. »"}]},
  ronge:{f:5,t:[{w:"carnet",t:"« Jour 11. Des petites choses, par bandes. On les entend gratter avant de les voir. Elles nettoient une carcasse jusqu'à l'os. Honoré les appelle les Ronge-os. »"},{w:"carnet",t:"« Seules, elles détalent. À quatre ou cinq, elles s'en prennent à tout ce qui est seul : un Cracheur, un Rampant à l'écart. Nous. »"},{w:"carnet",t:"« On en a tué deux, les autres ont filé. Les Rampants affamés, eux, les gobent comme des noisettes. »"}]},
  glou:{f:6,t:[{w:"carnet",t:"« Jour 13. Quelque chose de gros mange les Rampants. On a trouvé les restes. Puis on a trouvé la chose. »"},{w:"carnet",t:"« Nos balles l'agacent, sans plus. Anselme l'appelle le Glouton : il ne s'arrête de marcher que pour manger. Les autres bêtes s'enfuient quand il arrive. On a fait pareil. »"},{w:"carnet",t:"« Léonce lui a jeté sa viande et a couru. Il s'est arrêté net pour manger. Ensuite il s'est couché là, au milieu de la galerie, et il a dormi comme un bébé. Un très gros bébé. »"}]},
- gris:{f:5,t:[{w:"carnet",t:"« Jour 12. La flamme de Mathurin est devenue bleue, haute, très belle. Il a dit : venez voir. »"},{w:"carnet",t:"« Puis il a tiré sur une bête. On l'a retrouvé trois galeries plus loin, sourd, sans sourcils, et très poli depuis. »"},{w:"carnet",t:"« Flamme bleue : on ne tire pas. On recule. Ou on attend que le puits souffle le gaz ailleurs. »"}]},
- braise:{f:11,t:[{w:"cahier",t:"« Pour Lise, si tu lis un jour par-dessus mon épaule. Sous la porte, la roche est chaude. La lueur rouge brûle, et tout ce qui se tient près d'elle se voit de très loin. Moi compris. »"},{w:"cahier",t:"« Les fissures qui sifflent crachent leur vapeur toujours au même rythme. Je compte, et je passe juste après. Les bêtes, elles, ne savent pas compter. »"},{w:"cahier",t:"« Certains Rampants ont avalé de la braise. On les voit venir dans le noir, mais près d'eux on est en pleine lumière. Abattus, ils se vident en flaque brûlante. Mouchés en silence : rien. »"},{w:"moi",t:"…Cette écriture. Je la connais."}]},
- prenom:{f:13,t:[{w:"cahier",t:"« J'ai gravé mon prénom près de la porte, là-haut, pour que tu saches que je suis passé. Ici, je trace des flèches à la craie. Je ne sais plus très bien pour qui. »"},{w:"moi",t:"Le prénom sur le mur… Alors ce n'était pas le mien. Ou alors nous portons le même."}]},
- pas:{f:14,t:[{w:"cahier",t:"« Quelqu'un me suit. Des petits pas. J'ai laissé ma gourde et du pain sur une pierre plate. Au matin il ne restait rien, et un dessin à la craie : un cheval. »"},{w:"cahier",t:"« Je ne peux pas remonter. Si j'arrête de descendre, j'arrête de me souvenir. »"}]},
- silence:{f:15,t:[{w:"cahier",t:"« Plus bas, il n'y a plus de braise. La roche boit la lumière : ma lampe porte moins loin, et eux me voient toujours d'aussi loin. »"},{w:"cahier",t:"« Le sol est semé d'éclats d'os. Même au pas lent, ça craque. Je regarde où je pose le pied, et je longe ce qui est propre. »"},{w:"cahier",t:"« Il y a des cristaux blancs qui répètent ce qu'ils entendent. Un coup de feu trop près, et ils chantent, et tout ce qui a des oreilles accourt. Vers eux. Pas vers moi. Ça peut servir. »"}]},
- figes:{f:16,t:[{w:"cahier",t:"« J'ai trouvé des mineurs. Debout, la lampe éteinte à la main, gris comme la pierre. Je les ai crus morts. »"},{w:"cahier",t:"« J'ai tourné le dos pour remonter ma mèche. Quand je me suis retourné, ils étaient plus près. »"},{w:"cahier",t:"« Ils ne bougent que lorsque la lumière les quitte, et les balles ricochent tant qu'ils sont figés. Mais si je marche droit sur eux sans cesser de les éclairer, ils se laissent briser comme du sel. »"}]},
- chant:{f:18,t:[{w:"cahier",t:"« Je ne dors plus. Je chante. Quand je chante, ce qui est en dessous respire plus lentement. Je crois que c'est pour ça que le puits m'a gardé. »"},{w:"cahier",t:"« Si quelqu'un descend jusqu'ici avec une lanterne comme la mienne : qu'on ne le chasse pas. Je crois que je l'attends. »"}]},
- fin:{f:19,t:[{w:"cahier",t:"« Dernière page. La salle d'en dessous résonne, j'y resterai. Lise, le cheval bleu t'attend à la maison, sur l'étagère. »"},{w:"cahier",t:"« Dis à Mamie que je n'ai pas eu peur. Ce n'est pas vrai, mais dis-le quand même. »"}]}};
+ gris:{f:5,t:[{w:"carnet",t:"« Jour 12. La flamme de Mathurin est devenue bleue, haute, très belle. Il nous a dit : venez voir. »"},{w:"carnet",t:"« Puis il a tiré sur une bête. On l'a retrouvé trois galeries plus loin, sourd, sans sourcils, et d'une politesse exquise depuis. »"},{w:"carnet",t:"« Flamme bleue : on ne tire pas. On recule. Ou on attend que le puits souffle le gaz ailleurs. »"}]},
+ braise:{f:11,t:[{w:"cahier",t:"« Pour Lise, si un jour tu lis par-dessus mon épaule. Sous la porte, la roche est chaude. La lueur rouge brûle, et tout ce qui s'en approche se voit de très loin. Moi compris. »"},{w:"cahier",t:"« Les fissures qui sifflent crachent leur vapeur toujours au même rythme. Je compte, et je passe juste après. Les bêtes, elles, ne savent pas compter. »"},{w:"cahier",t:"« Certains Rampants ont avalé de la braise. On les voit venir dans le noir, mais près d'eux, on est en pleine lumière. Abattus, ils se répandent en flaque brûlante. Neutralisés en silence : rien. »"},{w:"moi",t:"…Cette écriture. Tu la connais."}]},
+ prenom:{f:13,t:[{w:"cahier",t:"« J'ai gravé mon prénom près de la porte, là-haut, pour qu'on sache que je suis passé. Ici, je trace des flèches à la craie. Je ne sais plus très bien pour qui. »"},{w:"moi",t:"Le prénom sur le mur… Ce n'était donc pas le tien. Ou alors, vous portez le même."}]},
+ pas:{f:14,t:[{w:"cahier",t:"« Quelqu'un me suit. De petits pas. J'ai laissé ma gourde et du pain sur une pierre plate. Au matin, il ne restait rien, sauf un dessin à la craie : un cheval. »"},{w:"cahier",t:"« Je ne peux pas remonter. Si j'arrête de descendre, j'arrête de me souvenir. »"}]},
+ silence:{f:15,t:[{w:"cahier",t:"« Plus bas, il n'y a plus de braise. La roche boit la lumière : ma lampe porte moins loin, mais eux me voient toujours d'aussi loin. »"},{w:"cahier",t:"« Le sol est semé d'éclats d'os. Même au pas lent, ça craque. Je regarde où je pose le pied, et je longe ce qui est propre. »"},{w:"cahier",t:"« Il y a des cristaux blancs qui répètent ce qu'ils entendent. Un coup de feu trop près, et ils chantent ; alors tout ce qui a des oreilles accourt. Vers eux, pas vers moi. Ça peut servir. »"}]},
+ figes:{f:16,t:[{w:"cahier",t:"« J'ai trouvé des mineurs. Debout, la lampe éteinte à la main, gris comme la pierre. Je les ai crus morts. »"},{w:"cahier",t:"« J'ai tourné le dos pour remonter ma mèche. Quand je me suis retourné, ils étaient plus près. »"},{w:"cahier",t:"« Ils ne bougent que lorsque la lumière les quitte, et les balles ricochent sur eux tant qu'ils restent figés. Mais si je marche droit sur eux sans cesser de les éclairer, ils se brisent comme du sel. »"}]},
+ chant:{f:18,t:[{w:"cahier",t:"« Je ne dors plus. Je chante. Quand je chante, ce qui est en dessous respire plus lentement. Je crois que c'est pour cela que le puits m'a gardé. »"},{w:"cahier",t:"« Si quelqu'un descend jusqu'ici avec une lanterne pareille à la mienne, qu'on ne le chasse pas. Je crois que je l'attends. »"}]},
+ fin:{f:19,t:[{w:"cahier",t:"« Dernière page. La salle d'en dessous résonne : j'y resterai. Lise, le cheval bleu t'attend à la maison, sur l'étagère. »"},{w:"cahier",t:"« Dis à Mamie que je n'ai pas eu peur. Ce n'est pas vrai, mais dis-le quand même. »"}]}};
 // ----- récit des Eaux noires : un carnet très ancien, à l'écriture ronde et appliquée -----
 WHO.vieux=["Un carnet très ancien",SP.page];WHO.regi=["Registre de l'éclusier",SP.doc];
 Object.assign(PAGES,{
- eau:{f:21,t:[{w:"vieux",t:"« Ici, ce n'est pas l'eau qui est noire, c'est le fond. Dans l'eau basse, je ne m'entends plus marcher. Mais ma lampe s'y reflète, et ça se voit de loin. »"},{w:"vieux",t:"« Là où je n'ai plus pied, je nage. Une main pour la lampe, une main pour l'eau : il ne m'en reste plus pour rien d'autre. »"},{w:"moi",t:"L'encre a pâli. L'écriture est ronde, appliquée. Une écriture de jeune fille, et ce carnet a des dizaines d'années."}]},
- nageur:{f:22,t:[{w:"vieux",t:"« Il y a quelque chose dans les bassins profonds. On ne voit que des rides. Dès que je mets un pied dans l'eau, les rides viennent vers moi. »"},{w:"vieux",t:"« Il jaillit d'un coup, puis il replonge. Dans l'eau basse, il ne peut pas se cacher. Je longe les bords, loin du profond, lampe baissée. »"}]},
+ eau:{f:21,t:[{w:"vieux",t:"« Ici, ce n'est pas l'eau qui est noire, c'est le fond. Dans l'eau basse, je ne m'entends plus marcher. Mais ma lampe s'y reflète, et cela se voit de loin. »"},{w:"vieux",t:"« Là où je n'ai plus pied, je nage. Une main pour la lampe, une main pour l'eau : il ne m'en reste aucune pour autre chose. »"},{w:"moi",t:"L'encre a pâli. L'écriture est ronde, appliquée : une écriture de jeune fille. Et ce carnet a des dizaines d'années."}]},
+ nageur:{f:22,t:[{w:"vieux",t:"« Il y a quelque chose dans les bassins profonds. On ne voit que des rides. Dès que je pose un pied dans l'eau, les rides viennent vers moi. »"},{w:"vieux",t:"« Il jaillit d'un coup, puis il replonge. Dans l'eau basse, il ne peut pas se cacher. Alors je longe les bords, loin du profond, la lampe baissée. »"}]},
  courant:{f:23,t:[{w:"vieux",t:"« Par ici, l'eau tourne. Elle file vers des trous au fond des bassins et emporte tout ce qu'on y laisse. Moi aussi, presque. »"},{w:"vieux",t:"« Ne jamais nager près d'un tourbillon. Ce qui y descend ne remonte pas. »"}]},
- sangsues:{f:24,t:[{w:"vieux",t:"« Des sangsues, en grappes. Ce n'est pas mon sang qu'elles veulent : elles boivent l'huile de ma lampe, à travers moi. »"},{w:"vieux",t:"« Elles se détachent toutes seules si je sors de l'eau et que je reste au sec. Il faut juste avoir la patience de rester au sec. »"}]},
- traces:{f:25,t:[{w:"vieux",t:"« Il est passé par ici. Ses traces sont dans la vase, longues, régulières. Il ne s'est jamais arrêté pour dormir. »"},{w:"vieux",t:"« Je ne sais pas s'il m'entend l'appeler. Je ne sais même pas s'il se souvient de mon nom. »"}]},
- maree:{f:26,t:[{w:"vieux",t:"« L'eau respire, elle aussi, mais plus lentement que l'air. Elle monte, elle tient, elle redescend. Un peu plus d'une minute, à peu près. »"},{w:"vieux",t:"« Quand elle monte, les gués deviennent des bassins. Je reste sur les hauteurs, et j'attends qu'elle reparte. »"}]},
+ sangsues:{f:24,t:[{w:"vieux",t:"« Des sangsues, en grappes. Ce n'est pas mon sang qu'elles veulent : elles boivent l'huile de ma lampe, à travers moi. »"},{w:"vieux",t:"« Elles se détachent toutes seules si je sors de l'eau et que je reste au sec. Il faut seulement avoir la patience d'attendre. »"}]},
+ traces:{f:25,t:[{w:"vieux",t:"« Il est passé par ici. Ses traces sont dans la vase, longues, régulières. Il ne s'est jamais arrêté pour dormir. »"},{w:"vieux",t:"« Je ne sais pas s'il m'entend quand je l'appelle. Je ne sais même pas s'il se souvient de mon nom. »"}]},
+ maree:{f:26,t:[{w:"vieux",t:"« L'eau respire, elle aussi, mais plus lentement que l'air. Elle monte, elle tient, elle redescend. Un peu plus d'une minute, à peu près. »"},{w:"vieux",t:"« Quand elle monte, les gués deviennent des bassins. Je reste sur les hauteurs et j'attends qu'elle reparte. »"}]},
  lucioles:{f:28,t:[{w:"vieux",t:"« De petites lumières vertes dansent au ras de l'eau. Elles adorent ma lampe. Quand elles me tournent autour, tout le noir me voit. »"},{w:"vieux",t:"« Mèche baissée, elles s'ennuient et retournent à leur eau. »"}]},
- forge:{f:30,t:[{w:"vieux",t:"« Papa a forgé douze lanternes pour la Compagnie. Je les ai portées moi-même jusqu'au monte-charge. »"},{w:"vieux",t:"« La nuit d'avant, il en a forgé une treizième, sans rien dire à personne. Je l'ai vu faire depuis l'escalier. »"}]},
+ forge:{f:30,t:[{w:"vieux",t:"« Papa a forgé douze lanternes pour la Compagnie. Je les ai portées moi-même jusqu'au monte-charge. »"},{w:"vieux",t:"« La nuit d'avant, il en a forgé une treizième, sans rien dire à personne. Je l'ai vu faire, cachée dans l'escalier. »"}]},
  machines:{f:33,t:[{w:"vieux",t:"« J'entends des machines. Des roues, des chaînes, de l'eau qu'on retient. La Compagnie a construit quelque chose, tout en bas. »"}]},
- chanson:{f:36,t:[{w:"vieux",t:"« Je chante pour ne pas avoir peur. La chanson du cheval bleu, celle que maman me chantait. Les bêtes de l'eau l'écoutent, je crois. »"}]},
- ecluse:{f:39,t:[{w:"vieux",t:"« Le gardien de l'écluse ne craint rien dans l'eau. Mais il ne sait pas compter les vannes, et hors de l'eau, ce n'est plus qu'un très gros poisson. »"},{w:"vieux",t:"« Demain, je ferme l'écluse. »"}]}});
+ chanson:{f:36,t:[{w:"vieux",t:"« Je chante pour ne pas avoir peur. La chanson du cheval bleu, celle que maman me chantait. Je crois que les bêtes de l'eau l'écoutent. »"}]},
+ ecluse:{f:39,t:[{w:"vieux",t:"« Le gardien de l'écluse ne craint rien dans l'eau. Mais il ne sait pas compter les vannes. Et hors de l'eau, ce n'est plus qu'un très gros poisson. »"},{w:"vieux",t:"« Demain, je ferme l'écluse. »"}]}});
 function onBossDead3(){
  S.won3=1;for(const b of L.basins)b.st="dead";save();lull(.04,0);
  say([{w:"moi",t:"Il ne bouge plus. Les trois bassins se vident d'un coup, dans un grondement qui remonte tout le puits."},
-  {w:"moi",t:"Au fond du bassin nord, une cabane de planches noircies par l'eau. Sur la table, un registre."},
-  {w:"regi",t:"« Registre de l'éclusier, puits n°3. Le niveau tient. Ce qui dort en dessous dort mieux quand l'eau est haute. Consigne de la Compagnie : ne jamais ouvrir. »"},
+  {w:"moi",t:"Au fond du bassin nord, une cabane de planches noircies par l'eau. Sur la table, un registre t'attend."},
+  {w:"regi",t:"« Registre de l'éclusier, puits n° 3. Le niveau tient. Ce qui dort en dessous dort mieux quand l'eau est haute. Consigne de la Compagnie : ne jamais ouvrir. »"},
   {w:"regi",t:"« Livraison du forgeron de Fosse-Grise : douze lanternes neuves. Le livreur les a comptées deux fois. À l'arrivée, il y en avait treize. »"},
-  {w:"regi",t:"« Dernière entrée. Une jeune fille du village est descendue jusqu'ici, seule, en chantant. Elle a fermé l'écluse de ses mains. Quand elle est repartie, elle n'y voyait presque plus. »"},
-  {w:"moi",t:"Sur la dernière page, de l'écriture ronde du vieux carnet, deux lignes : le deuxième couplet du cheval bleu."},
-  {w:"moi",t:"Il parle d'une rivière qu'on traverse sans se mouiller. Je le fredonne, et l'eau me paraît moins lourde."}]);
+  {w:"regi",t:"« Dernière entrée. Une jeune fille du village est descendue jusqu'ici, seule, en chantant. Elle a fermé l'écluse de ses propres mains. Quand elle est repartie, elle n'y voyait presque plus. »"},
+  {w:"moi",t:"Sur la dernière page, de la même écriture ronde que le vieux carnet, deux lignes : le deuxième couplet du cheval bleu."},
+  {w:"moi",t:"Il parle d'une rivière qu'on traverse sans se mouiller. Tu le fredonnes, et l'eau te paraît soudain moins lourde."}]);
 }
 const VENT_L=[
  {w:"suie",t:"Ne bouge pas. … Voilà. Tu ramènes un courant d'air dans tes cheveux. Tu es donc descendu assez bas pour le sentir."},
@@ -2351,39 +2351,39 @@ const VENT_L=[
  {w:"suie",t:"Regarde ta flamme : elle se couche du côté où l'air s'en va. Et la poussière, dans ta lumière, te dessine le chemin du vent."},
  {w:"suie",t:"Si elle se couche vers un mur plein, c'est que le mur ment. Il y a du vide derrière. Quelques balles, et il avoue."}];
 const FLAIR_L=[
- {w:"suie",t:"Pouah. Recule. Tu empestes la sueur et l'huile de lampe."},
- {w:"suie",t:"Si moi je te sens d'ici, imagine les Rampants. Le courant leur porte ton odeur bien avant qu'ils te voient."},
- {w:"suie",t:"Avance le vent dans la figure : ce qui est devant toi ne te sentira pas. Le vent dans le dos, tout ce qui est devant sait que tu arrives."},
+ {w:"suie",t:"Pouah ! Recule. Tu empestes la sueur et l'huile de lampe."},
+ {w:"suie",t:"Si je te sens d'ici, imagine les Rampants. Le courant leur porte ton odeur bien avant qu'ils ne te voient."},
+ {w:"suie",t:"Avance le vent dans la figure, et ce qui est devant toi ne te sentira pas. Le vent dans le dos, et tout ce qui est devant sait que tu arrives."},
  {w:"suie",t:"Et quand le puits retient son souffle, plus rien ne voyage. C'est le moment d'approcher."}];
 const GRIS_L=[
- {w:"grelot",t:"Une flamme BLEUE ? Formidable ! Enfin, non. Terrible. C'est du grisou. Ça suinte des fissures et ça dort dans les coins où l'air ne passe pas."},
- {w:"grelot",t:"Ta lanterne ne risque rien : elle prévient, c'est tout. Mais une balle, une grenade, une torche… et BOUM. Tout le nuage part d'un coup. Toi compris, si tu es dedans."},
- {w:"grelot",t:"Remarque, si ce sont eux qui sont dedans, et toi dehors… Je dis ça, je ne dis rien. Et le souffle du puits pousse le gaz : il ne reste jamais tout à fait au même endroit."}];
+ {w:"grelot",t:"Une flamme BLEUE ? Formidable ! Enfin, non : terrible. C'est du grisou. Ça suinte des fissures, et ça dort dans les recoins où l'air ne passe pas."},
+ {w:"grelot",t:"Ta lanterne ne risque rien, elle te prévient, c'est tout. Mais une balle, une grenade, une torche… et BOUM ! Tout le nuage part d'un coup. Toi compris, si tu es dedans."},
+ {w:"grelot",t:"Remarque, si c'est eux qui sont dedans et toi dehors… Je dis ça, je ne dis rien. Et le souffle du puits pousse le gaz : il ne reste jamais tout à fait au même endroit."}];
 const FAIM_L=[
  {w:"suie",t:"Tu sens la charogne. Ne fais pas cette tête : ça veut dire que tu as vu manger, en bas."},
  {w:"suie",t:"Tout ce qui vit dans le puits a faim. Une bête affamée court plus vite et te flaire de plus loin. Une bête qui mange n'écoute plus rien."},
- {w:"suie",t:"Et une bête repue se couche et dort. Celle-là, tu la neutralises comme on mouche une chandelle. Même les grosses."},
- {w:"suie",t:"Coupe un morceau sur une carcasse, pose-le où ça t'arrange, et laisse le courant porter l'odeur. Mais tant que tu l'as dans la poche, c'est toi le dîner."}];
+ {w:"suie",t:"Et une bête repue se couche et s'endort. Celle-là, tu la neutralises comme on mouche une chandelle. Même les grosses."},
+ {w:"suie",t:"Coupe un morceau sur une carcasse, pose-le où ça t'arrange et laisse le courant porter l'odeur. Mais tant que tu le gardes dans ta poche, le dîner, c'est toi."}];
 const GLOU_L=[
- {w:"grelot",t:"Tu as vu le GROS ? J'ai fait le calcul : pour bouger une carcasse pareille, il lui faut un Rampant tous les quarts d'heure. Au moins."},
+ {w:"grelot",t:"Tu as vu le GROS ? J'ai fait le calcul : pour bouger une carcasse pareille, il lui faut un Rampant tous les quarts d'heure. Au bas mot."},
  {w:"grelot",t:"Il ne chasse pas par méchanceté, il chasse par arithmétique : ce qui est le plus près passe en premier. Arrange-toi pour ne jamais être le plus près."},
- {w:"grelot",t:"Et quand il a le ventre plein, il s'écroule et il digère. Là, même moi j'irais lui tirer les moustaches. Enfin… toi d'abord."}];
+ {w:"grelot",t:"Et quand il a le ventre plein, il s'écroule pour digérer. Là, même moi, j'irais lui tirer les moustaches. Enfin… toi d'abord."}];
 function airLesson(){const l=S.seen.air2&&!S.seen.l_vent?["l_vent",VENT_L]:S.seen.sniffed&&!S.seen.l_flair?["l_flair",FLAIR_L]:(S.seen.blue||S.seen.boom)&&!S.seen.l_gris?["l_gris",GRIS_L]:S.seen.ate&&!S.seen.l_faim?["l_faim",FAIM_L]:S.seen.glou&&!S.seen.l_glou?["l_glou",GLOU_L]:null;if(l){S.seen[l[0]]=1;save();say(l[1])}}
 const OUIE=[
- {w:"suie",t:"Viens là, toi. Tu es descendu combien de fois, déjà ? Et tu cours toujours comme un tombereau de ferraille."},
- {w:"suie",t:"Je suis aveugle, alors je vois avec mes oreilles. Le bruit suit les galeries, tourne aux coins, s'étouffe dans la roche. En bas, tout le monde voit comme moi."},
- {w:"suie",t:"Pousse ton pas à moitié et tu ne fais plus de bruit. Cours, tire, et le puits entier sait où tu es. Remarque : ton vacarme te montrera aussi ce qui se cache dans le noir."},
- {w:"suie",t:"Et retiens ceci : ces bêtes ne regardent que devant elles. Lumière douce, pas lents, par derrière. Mais si ta lampe allonge leur ombre sous leurs pattes, c'est fichu."}];
+ {w:"suie",t:"Viens là, toi. Combien de fois es-tu descendu, déjà ? Et tu cours toujours comme un tombereau de ferraille."},
+ {w:"suie",t:"Je suis aveugle, alors je vois avec mes oreilles. Le bruit suit les galeries, tourne aux angles, s'étouffe dans la roche. En bas, tout le monde voit comme moi."},
+ {w:"suie",t:"Pousse ton pas à moitié, et tu ne fais plus de bruit. Cours, tire, et le puits entier sait où tu es. Remarque : ton vacarme te montrera aussi ce qui se cache dans le noir."},
+ {w:"suie",t:"Et retiens ceci : ces bêtes ne regardent que devant elles. Lumière douce, pas lents, par-derrière. Mais si ta lampe allonge leur ombre sous leurs pattes, c'est fichu."}];
 const LETTER=[
- {w:"lise",t:"« Papa, Mamie Suie dit que tu reviendras quand la lanterne s'éteindra. Je ne comprends pas. Elle ne s'éteint jamais. »"},
- {w:"lise",t:"« Hier j'ai entendu quelqu'un chanter au fond du puits. C'était ta chanson, celle du cheval bleu. Mais en plus lent. »"},
+ {w:"lise",t:"« Papa, Mamie Suie dit que tu reviendras quand la lanterne s'éteindra. Je ne comprends pas : elle ne s'éteint jamais. »"},
+ {w:"lise",t:"« Hier, j'ai entendu quelqu'un chanter au fond du puits. C'était ta chanson, celle du cheval bleu. Mais plus lente. »"},
  {w:"lise",t:"« Je laisse cette lettre ici pour que tu la trouves. Reviens vite. — Lise »"},
- {w:"moi",t:"…Comment cette lettre est-elle arrivée au quatrième étage ?"}];
+ {w:"moi",t:"…Comment cette lettre a-t-elle pu arriver jusqu'au quatrième étage ?"}];
 
 // ================= DÉROULÉ D'UNE DESCENTE =================
 function startRun(floor,resume){
  audio();
- const rested=resume?resume.rested:(S.day!==today());
+ const rested=false;
  if(!resume){S.day=today();S.runs++}
  run={loot:resume?resume.loot:0,mat:Object.assign({chit:0,gland:0,crist:0,brai:0,pale:0,nacr:0,lton:0},resume&&resume.mat),kills:0,max:floor,rested,startLoot:resume?resume.loot:0,gch:resume&&resume.gch!=null?resume.gch:gadMax(),bait:resume&&resume.bait||0};
  enterFloor(floor,resume?resume.hp:null,resume?resume.oil:null);
@@ -2399,26 +2399,26 @@ function enterFloor(f,hp,oil){
  ["sheet","vhud","vlabel"].forEach(i=>$(i).classList.add("hide"));["hud","ctrl","pause","bAuto","bLamp"].forEach(i=>$(i).classList.remove("hide"));gobs=[];updGad();missionIntro();$("pause").textContent="II";fireB._s=null;fireB.style.opacity=1;fireB.innerHTML="TIR";updBtns();
  if(!S.seen.ctrl){S.seen.ctrl=1;save();pop("🏮 Comment jouer",
   "<p>👆 Glisse le pouce à gauche de l'écran pour bouger. Ta lanterne éclaire là où tu marches.</p><p>🔫 TIR AUTO : tu tires seul dès qu'un ennemi entre dans ta lumière. Coupe-le pour t'infiltrer.</p><p>🕯 LUMIÈRE VIVE : tu vois loin, mais on te voit de loin. LUMIÈRE DOUCE : tu es discret, presque aveugle, et l'huile dure plus longtemps.</p><p>🤫 Les créatures ne voient que devant elles. Arrive par derrière, en lumière douce : le bouton devient NEUTRALISER. Silencieux, et ça rapporte plus.</p><p>〰 Le bruit se voit : il suit les galeries et tourne aux coins. Pousse le pouce à moitié pour marcher sans bruit : tes traces de pas restent pâles. Ambre ou orange, on t'entend.</p>")}
- if(f===2&&!S.seen.f2){S.seen.f2=1;save();say([{w:"echo",t:"…tu entends les gouttes ? Elles tombent vers le haut, parfois. Ne te retourne pas."}])}
- if(f===6&&!S.seen.f6){S.seen.f6=1;save();say([{w:"moi",t:"Des cristaux… Leur lumière est froide. Elle éclaire, mais elle ne réchauffe rien."}])}
- if(f===11&&!S.seen.f11){S.seen.f11=1;save();say([{w:"moi",t:"Il fait chaud. La roche est veinée de rouge, comme si quelque chose couvait derrière."},{w:"moi",t:"Des flèches à la craie, sur la paroi. Elles pointent toutes vers le bas."}])}
- if(f===16&&!S.seen.f16){S.seen.f16=1;save();lull(.03,0);say([{w:"moi",t:"Plus de braise. Plus un bruit. Ma flamme rétrécit, comme si le noir appuyait dessus."},{w:"echo",t:"Ici, je n'ose plus parler fort. Écoute… tout en bas. Quelqu'un chante."}])}
+ if(f===2&&!S.seen.f2){S.seen.f2=1;save();say([{w:"echo",t:"…Tu entends les gouttes ? Parfois, elles tombent vers le haut. Ne te retourne pas."}])}
+ if(f===6&&!S.seen.f6){S.seen.f6=1;save();say([{w:"moi",t:"Des cristaux… Leur lumière est froide. Elle éclaire, mais ne réchauffe rien."}])}
+ if(f===11&&!S.seen.f11){S.seen.f11=1;save();say([{w:"moi",t:"Il fait chaud. La roche est veinée de rouge, comme si quelque chose couvait derrière."},{w:"moi",t:"Des flèches à la craie, sur la paroi. Toutes pointent vers le bas."}])}
+ if(f===16&&!S.seen.f16){S.seen.f16=1;save();lull(.03,0);say([{w:"moi",t:"Plus de braise. Plus un bruit. Ta flamme rétrécit, comme si le noir pesait dessus."},{w:"echo",t:"Ici, je n'ose plus parler fort. Écoute… Tout en bas, quelqu'un chante."}])}
  if(L.npc&&L.npc.lise)setTimeout(()=>lull(.03,0),1800);
- if(f===21&&!S.seen.f21){S.seen.f21=1;save();say([{w:"moi",t:"De l'eau. Partout. Noire, immobile, tiède."},{w:"moi",t:"Mon Écho ne m'a pas suivi jusqu'ici. Il n'y a plus que moi, et le bruit de mes pas qui s'éteint dans l'eau."}])}
- if(f===41&&!S.seen.f41){S.seen.f41=1;save();say([{w:"moi",t:"Des rails. Des wagonnets, des réverbères sur des poteaux de fer."},{w:"moi",t:"Ici, on ne descendait plus pour la journée. On descendait pour rester, et tout le matériel descendait avec."}])}
- if(f===50&&!S.seen.f50){S.seen.f50=1;save();say([{w:"moi",t:"Des caisses empilées, des tonneaux cerclés de fer. Un relais. Ils vivaient ici des semaines entières."}])}
- if(f===33&&!S.seen.f33){S.seen.f33=1;save();say([{w:"moi",t:"Les parois sont maçonnées. Des pierres taillées, des joints, des anneaux de fer scellés. Quelqu'un a construit, ici."}])}
- if(f===40){L.bossIntro=false;say([{w:"moi",t:"Une salle immense, taillée droit. Trois bassins, et sur la rive, trois grandes roues de fer."},{w:"moi",t:"Quelque chose de très gros tourne sous l'eau. Ces roues… ce sont des vannes."}],()=>{L.bossIntro=true;SFX.boss();shake=.4})}
+ if(f===21&&!S.seen.f21){S.seen.f21=1;save();say([{w:"moi",t:"De l'eau. Partout. Noire, immobile, tiède."},{w:"moi",t:"Ton Écho ne t'a pas suivi jusqu'ici. Il n'y a plus que toi, et le bruit de tes pas qui meurt dans l'eau."}])}
+ if(f===41&&!S.seen.f41){S.seen.f41=1;save();say([{w:"moi",t:"Des rails. Des wagonnets. Des réverbères sur des poteaux de fer."},{w:"moi",t:"Ici, on ne descendait plus pour la journée. On descendait pour rester, et tout le matériel descendait avec les hommes."}])}
+ if(f===50&&!S.seen.f50){S.seen.f50=1;save();say([{w:"moi",t:"Des caisses empilées, des tonneaux cerclés de fer. Un relais. Des hommes ont vécu ici des semaines entières."}])}
+ if(f===33&&!S.seen.f33){S.seen.f33=1;save();say([{w:"moi",t:"Les parois sont maçonnées. Pierres taillées, joints, anneaux de fer scellés. Quelqu'un a bâti, ici."}])}
+ if(f===40){L.bossIntro=false;say([{w:"moi",t:"Une salle immense, taillée droit. Trois bassins, et sur la rive, trois grandes roues de fer."},{w:"moi",t:"Quelque chose d'énorme tourne sous l'eau. Ces roues… ce sont des vannes."}],()=>{L.bossIntro=true;SFX.boss();shake=.4})}
  if(f===20){L.bossIntro=false;lull(.045,0);say([{w:"echo",t:"Je ne peux pas te suivre plus bas. Celui qui chante ici est plus vieux que moi. C'est le premier d'entre nous."},{w:"echo",t:"Il porte ta lanterne. Tu portes la sienne. Ne lui demande pas laquelle est la vraie."},{w:"prem",t:"…Encore un qui descend. Tu viens me prendre la chanson ? C'est tout ce qui le fait dormir."}],()=>{L.bossIntro=true;SFX.boss();shake=.4})}
- if(f===10){L.bossIntro=false;say([{w:"echo",t:"Elle garde la porte. Ne regarde pas ses yeux. Regarde le sol : il te dit où elle va frapper."},{w:"echo",t:"Et… si tu tombes, je serai là. Je suis toujours là."}],()=>{L.bossIntro=true;SFX.boss();shake=.4})}
+ if(f===10){L.bossIntro=false;say([{w:"echo",t:"Elle garde la porte. Ne regarde pas ses yeux. Regarde le sol : il te dira où elle va frapper."},{w:"echo",t:"Et… si tu tombes, je serai là. Je suis toujours là."}],()=>{L.bossIntro=true;SFX.boss();shake=.4})}
 }
 function stairsMenu(){
- if(L.f===MAXF){pop("Au bout de la voie","<p>Plus bas, la voie continue dans le noir. Les rails sont froids. Quelqu'un a éteint toutes les lampes au-delà.</p><p style='opacity:.7'>La suite du puits arrive.</p>",[["⬆ Remonter avec le butin",()=>finishRun(false)],["Rester ici",null]]);return}
+ if(L.f===MAXF){pop("Au bout de la voie","<p>Plus bas, la voie s'enfonce dans le noir. Les rails sont froids. Quelqu'un a éteint toutes les lampes, au-delà.</p><p style='opacity:.7'>La suite du puits est en chemin.</p>",[["⬆ Remonter avec le butin",()=>finishRun(false)],["Rester ici",null]]);return}
  let after=null;
  if(L.mis==="sauver"&&L.npc&&!L.npc.gone){if(Math.hypot(L.npc.x-P.x,L.npc.y-P.y)>3){floatTxt(P.x,P.y-1,"Attends "+L.npc.name+" !");L.menuShown=false;return}
   if(!L.npc.saved){L.npc.saved=true;S.st.saved++;const v=Math.round(15*L.f*deep(L.f)*(run.rested?1.5:1));run.loot+=v;if(L.npc.lise){S.lise=1;L.npc.gone=1;after=LISE_UP}save();floatTxt(P.x,P.y-1,"+"+v+" ⛏ · "+L.npc.name+" est sauf"+(L.npc.lise?"ve":""))}}
  const nf=L.f+1;
- const menu=()=>pop("Escalier — étage "+L.f,"<p>Tu portes ⛏ "+fmt(run.loot)+" "+matStr(run.mat,true)+".</p><p>🕯 Huile : "+Math.round(P.oil)+" / "+P.moil+".</p><p>Plus bas, c'est plus dangereux, mais ça rapporte davantage. Si tu meurs, tu ne remontes qu'avec un quart de ce que tu portes.</p>",
+ const menu=()=>pop("Escalier — étage "+L.f,"<p>Tu portes ⛏ "+fmt(run.loot)+" "+matStr(run.mat,true)+".</p><p>🕯 Huile : "+Math.round(P.oil)+" / "+P.moil+".</p><p>Plus bas, le danger grandit, mais le butin aussi. Si tu meurs, tu ne remontes qu'avec le quart de ce que tu portes.</p>",
   [["⬇ Descendre à l'étage "+nf,()=>enterFloor(nf,P.hp,P.oil)],["⬆ Remonter avec le butin",()=>finishRun(false)],["Rester ici",null]]);
  if(after)say(after,menu);else menu();
 }
@@ -2436,17 +2436,17 @@ function finishRun(dead,firstEcho){
  const gain=run.loot;S.ore+=gain;for(const k in run.mat)S.mat[k]+=run.mat[k];S.run=null;
  if(L.f===10&&!dead)S.won=true;
  save();state="camp";paused=true;["hud","ctrl","pause","bGad","bBait","banner"].forEach(i=>$(i).classList.add("hide"));
- const lines="<p>Étage atteint : "+run.max+"</p><p>Ennemis : "+run.kills+"</p><p>⛏ Rapporté : "+fmt(gain)+"</p><p>"+matStr(run.mat)+"</p>"+(dead?"<p>💀 Tu ne remontes qu'avec un quart du butin. "+(S.un.echos?"Ton Écho en garde la moitié ("+fmt(run.kept)+" ⛏), à l'étage "+L.f+". Le reste est perdu.":"</p><p style='font-style:italic'>En tombant, tu as senti une part de toi rester en bas. Ton âme ? Tes souvenirs ? Aucune idée, pour l'instant…")+"</p>":"")+(run.rested?"<p>✨ Bonus reposé appliqué.</p>":"");
+ const lines="<p>Étage atteint : "+run.max+"</p><p>Ennemis : "+run.kills+"</p><p>⛏ Rapporté : "+fmt(gain)+"</p><p>"+matStr(run.mat)+"</p>"+(dead?"<p>💀 Tu ne remontes qu'avec le quart du butin. "+(S.un.echos?"Ton Écho en garde la moitié ("+fmt(run.kept)+" ⛏), à l'étage "+L.f+". Le reste est perdu.":"</p><p style='font-style:italic'>En tombant, tu as senti une part de toi rester en bas. Ton âme ? Tes souvenirs ? Impossible de le dire, pour l'instant…")+"</p>":"")+(run.rested?"<p>✨ Bonus reposé appliqué.</p>":"");
  pop(dead?"Tu es tombé…":"Retour à la surface",lines+"<p style='opacity:.6'>Le village continue de vivre pendant ton absence.</p>",[["Retour au village",()=>{enterVillage();checkUnlocks(dead)}]]);
 }
 function onBossDead(){
  S.won=true;save();
- say([{w:"echo",t:"Elle est tombée… La porte s'ouvre. Plus bas, encore plus bas."},
-  {w:"moi",t:"Il y a quelque chose de gravé sur le mur, à côté de l'escalier. Taillé à la main, il y a longtemps…"},
-  {w:"moi",t:"…c'est mon prénom."},
+ say([{w:"echo",t:"Elle s'effondre… La porte s'ouvre. Plus bas, toujours plus bas."},
+  {w:"moi",t:"Quelque chose est gravé sur le mur, à côté de l'escalier. Taillé à la main, il y a longtemps…"},
+  {w:"moi",t:"…c'est ton prénom."},
   {w:"echo",t:"Tu vois ? Je t'avais dit que je te connaissais. La porte est ouverte. Plus bas… il fait chaud."},
   {w:"moi",t:"Là où elle est tombée, une pierre luit doucement. Quelqu'un y a gravé quelques mots : « Fais confiance aux étoiles. »"},
-  {w:"moi",t:"Je la glisse dans ma poche. Elle est tiède."}]);if(cstS().stone<1){cstS().stone=1;save()}
+  {w:"moi",t:"Tu la glisses dans ta poche. Elle est tiède."}]);if(cstS().stone<1){cstS().stone=1;save()}
 }
 
 // ================= CONSTELLATION =================
@@ -2547,7 +2547,7 @@ function skyClamp(){const K=SKY;K.ox=clamp(K.ox,-19,19);K.oy=clamp(K.oy,-19,19)}
   pop("Reprise","<p>Éteindre toutes tes étoiles pour récupérer tes "+cstSpent()+" lueurs et les replacer.</p><p>Prix : ⛏ "+fmt(k)+" (tu as ⛏ "+fmt(S.ore)+").</p>",S.ore>=k?[["Reprendre",()=>{S.ore-=k;cstS().sp=[];cstS().resp=(cstS().resp||0)+1;cstCalc();save();if(SKY){SKY.key="";SKY.sel=null;skyInfo()}tone("sine",900,200,.6,.04)}],["Annuler",null]]:[["Pas assez de minerai",null]])})})();
 
 // ----- la scène de la pierre, puis une petite phrase par lueur gagnée -----
-const CST_PH=["La pierre tiédit dans ma poche. Là-haut, une étoile m'attend.","Un éclat bref, au fond de ma poche. Le ciel a quelque chose pour moi.","La pierre bat comme un cœur, une seule fois. Une lueur de plus.","Elle scintille sans que je la sorte. Le rocher plat m'appelle.","Une étoile de plus. Je le sens avant même de lever les yeux.","La pierre fredonne presque. Ce soir, le ciel est plus proche.","Un petit point de chaleur dans la paume. Une étoile à allumer.","Elle brille un instant, puis se tait. Elle a compté.","Je la serre dans ma main. Elle répond.","Une lueur. Le ciel me garde une place.","La pierre s'éclaire, comme une braise qu'on souffle. Il y a de la force à prendre, là-haut.","Elle pèse un peu plus lourd. Une étoile de plus à réveiller."];
+const CST_PH=["La pierre tiédit dans ta poche. Là-haut, une étoile t'attend.","Un éclat bref, au fond de ta poche. Le ciel a quelque chose pour toi.","La pierre bat comme un cœur, une seule fois. Une lueur de plus.","Elle scintille sans que tu la sortes. Le rocher plat t'appelle.","Une étoile de plus. Tu le sens avant même de lever les yeux.","La pierre fredonne presque. Ce soir, le ciel est plus proche.","Un petit point de chaleur dans ta paume. Une étoile à allumer.","Elle brille un instant, puis se tait. Elle a compté.","Tu la serres dans ta main. Elle répond.","Une lueur. Le ciel te garde une place.","La pierre s'éclaire comme une braise sur laquelle on souffle. Il y a de la force à prendre, là-haut.","Elle pèse un peu plus lourd. Une étoile de plus à réveiller."];
 function cstBusy(){return paused||SKY||!$("dlg").classList.contains("hide")||!$("pop").classList.contains("hide")||!$("sheet").classList.contains("hide")||$("camp")&&!$("camp").classList.contains("hide")}
 function cstVillage(){if(state!=="village")return;const c=cstS();if(c.stone<1)return;if(cstBusy()){setTimeout(cstVillage,900);return}
  if(c.stone===1)cstScene();else cstNews()}
@@ -2555,11 +2555,11 @@ function cstNews(){const c=cstS(),p=cstPts(),n=p-c.shown;if(n<=0)return;c.shown=
  const ls=[];for(let i=0;i<Math.min(n,4);i++){c.ph=((c.ph||0)+1)%CST_PH.length;ls.push({w:"moi",t:CST_PH[c.ph]+"  ✦"})}
  if(n>4)ls.push({w:"moi",t:"Et encore… ✦ "+(n-4)+" de plus. Le ciel s'impatiente."});save();tone("sine",1200,1800,.5,.04);say(ls)}
 function cstScene(){const c=cstS(),now=()=>performance.now()/1000;skyOpen(true);tone("sine",300,420,1.5,.03);
- say([{w:"moi",t:"Ce soir, la pierre de la Mère pèse plus lourd dans ma poche. Je la sors. Les mots gravés accrochent la lumière : « Fais confiance aux étoiles. »"}],()=>{
+ say([{w:"moi",t:"Ce soir, la pierre de la Mère pèse plus lourd dans ta poche. Tu la sors. Les mots gravés accrochent la lumière : « Fais confiance aux étoiles. »"}],()=>{
   if(!SKY)return;SKY.scene.ph=1;SKY.scene.t1=now();tone("sine",600,1200,1.2,.04);
-  setTimeout(()=>say([{w:"moi",t:"Je la lève vers le ciel, sans trop savoir pourquoi. Elle scintille. Là-haut, une étoile lui répond."},{w:"moi",t:"Une chaleur me remonte dans le bras. Je me sens… plus fort."}],()=>{
+  setTimeout(()=>say([{w:"moi",t:"Tu la lèves vers le ciel, sans trop savoir pourquoi. Elle scintille. Là-haut, une étoile lui répond."},{w:"moi",t:"Une chaleur te remonte le long du bras. Tu te sens… plus fort."}],()=>{
    if(!SKY)return;SKY.scene.ph=2;SKY.scene.t2=now();tone("triangle",800,1600,1.5,.03);
-   setTimeout(()=>{const p=cstPts();say([{w:"moi",t:"Elle scintille encore, et encore, comme si elle se souvenait de chaque marche descendue. ✦ "+p+" lueurs."},{w:"moi",t:"Chaque étoile que j'allume me rend plus fort. Et le rocher plat, près de la mine… de là, on doit voir tout le ciel."}],()=>{
+   setTimeout(()=>{const p=cstPts();say([{w:"moi",t:"Elle scintille encore, et encore, comme si elle se souvenait de chaque marche descendue. ✦ "+p+" lueurs."},{w:"moi",t:"Chaque étoile que tu allumes te rend plus fort. Et le rocher plat, près de la mine… De là-haut, on doit voir tout le ciel."}],()=>{
     c.stone=2;c.shown=p;save();if(SKY){SKY.scene=null;SKY.sc=SKY.s0*2;SKY.ox=SKY.oy=0;SKY.key="";$("skyr").classList.remove("hide");$("skyx").classList.remove("hide")}})},2600)}),1900)})}
 
 // ================= CAMPEMENT =================
@@ -2570,22 +2570,22 @@ const echoRate=e=>e.calm?1.5*e.floor:0;
 const ECHO_LORE=[
  "En écoutant les Rampants, j'ai compris une chose : ils ne mangent jamais à leur faim. Le meilleur morceau, ils le descendent à leur Mère. Même la lumière.",
  "Les Cracheurs ne voient pas bien sur les côtés. J'en ai contourné un pendant des heures. Il ne m'a jamais remarqué.",
- "Un Guetteur m'a laissé l'approcher. Je crois qu'ils étaient des mineurs, avant. Ils ont gardé l'habitude de surveiller les lampes.",
+ "Un Guetteur m'a laissé l'approcher. Je crois qu'ils étaient des mineurs, autrefois. Ils ont gardé l'habitude de surveiller les lampes.",
  "Les gouttes qui tombent vers le haut… elles remontent jusqu'au village. Le puits boit Fosse-Grise par en dessous.",
  "Un Dormeur a parlé dans son sommeil. Il rêvait d'un soleil. Il n'en a jamais vu un seul.",
  "Les cristaux poussent là où quelqu'un est mort en gardant sa lumière allumée. Regarde combien il y en a, plus bas.",
- "Il y a des flèches à la craie sur les murs, qui pointent toutes vers le bas. Même écriture que la tienne. Que la mienne.",
+ "Il y a des flèches à la craie sur les murs. Toutes pointent vers le bas. La même écriture que la tienne. Que la mienne.",
  "La Mère n'est pas la plus vieille chose d'ici. Elle aussi a peur de ce qui dort en dessous.",
- "Mamie Suie est déjà descendue. Il y a très longtemps. À l'époque, elle avait encore ses yeux.",
- "L'Oreillard n'a jamais eu d'yeux. Il se jette sur tout ce qui fait du bruit. Même les siens. Fais crier un Rampant près de lui, et écarte-toi.",
- "Je me tiens toujours sous leur vent. Ils flairent ce que le courant leur apporte, et rien d'autre. Quand le puits retient son souffle, je passe.",
+ "Mamie Suie est déjà descendue, il y a très longtemps. À l'époque, elle avait encore ses yeux.",
+ "L'Oreillard n'a jamais eu d'yeux. Il se jette sur tout ce qui fait du bruit, même sur les siens. Fais crier un Rampant près de lui, et écarte-toi.",
+ "Je me tiens toujours sous leur vent. Ils ne flairent que ce que le courant leur apporte. Quand le puits retient son souffle, je passe.",
  "Là où l'air ne circule pas, quelque chose s'accumule. Ma flamme y devenait bleue. J'ai appris à ne plus tirer… ou à tirer de très loin.",
  "Une bête repue ne chasse pas. J'ai traversé une salle pleine en enjambant des ventres ronds. Aucun n'a ouvert l'œil.",
  "Le Glouton ne dort que le ventre plein. Je lui ai laissé ce que j'avais tué. C'est la seule fois où j'ai pu l'approcher.",
  "Sous la porte, la lave éclaire tout ce qui s'en approche. Je passais dans son dos, là où la lueur ne porte pas.",
- "Un cristal blanc répète le bruit qu'il entend. J'ai tiré dans l'un d'eux, de très loin. Toute la salle est allée voir. Pas moi.",
+ "Un cristal blanc répète le bruit qu'il entend. J'ai tiré dans l'un d'eux, de très loin. Toute la salle est allée voir. Moi, non.",
  "Les mineurs gris avancent dans ton dos. Garde-les dans ta lumière et marche droit sur eux : ils cassent net.",
- "Je ne suis pas le premier. Il y en a un plus vieux que moi, tout en bas. Il chante. Je n'ose pas descendre le voir : il a mon visage, lui aussi."];
+ "Je ne suis pas le premier. Il y en a un plus vieux que moi, tout en bas. Il chante. Je n'ose pas descendre le voir : lui aussi a mon visage."];
 ECHO_LORE.push(
  "Dans l'eau basse, je n'entendais plus mes propres pas. Eux non plus. Mais ma lampe brillait deux fois : dans ma main, et dans l'eau.",
  "Les rides qui viennent vers toi, ce n'est pas le vent. Il n'y a pas de vent sur cette eau-là.",
@@ -2606,21 +2606,21 @@ const armUpCost=(k,l)=>[Math.round(12*Math.pow(1.5,l)),Object.assign(k==="chit"?
 const canPay=c=>c&&S.ore>=c[0]&&Object.entries(c[1]).every(([k,v])=>S.mat[k]>=v);
 const pay=c=>{S.ore-=c[0];for(const[k,v]of Object.entries(c[1]))S.mat[k]-=v};
 const costStr=c=>fmt(c[0])+" ⛏"+Object.entries(c[1]).filter(([k,v])=>v>0).map(([k,v])=>" "+v+MATI[k]).join("");
-const SUIE={mat1:"De l'acier ! Enfin un canon qui ne fond pas quand tu tires trop.",mat2:"Trempé dans l'eau du puits. Ne me demande pas pourquoi elle est tiède.",mat3:"De l'argent du puits… Il chante pendant qu'on le forge. Je n'aime pas ça. Mais il tue bien.",verre1:"Ce cristal voit dans le noir. Ta lanterne aussi, maintenant.",meche2:"Du lin tressé par mes soins. Si tu le gâches, je le saurai.",chit:"Une armure en carapace de Rampant. Ils ne t'entendront plus venir. Moi si, toujours.",plaq:"De la fonte. Tu vas faire le bruit d'une casserole qui dévale un escalier. Mais tu seras vivant.",mat4:"Du fer de braise. Il reste chaud des jours entiers. Ne le pose pas sur mon établi : il est en bois.",mat5:"Ça… ça ne tinte pas. J'ai frappé dessus toute la nuit sans rien entendre. Ton canon tirera fort, et moi je vais mal dormir.",verre2:"Du verre cuit dans la braise du fond. Ta lumière s'ouvre comme une main.",mat6:"De la nacre noire fondue dans l'acier. Il sent la vase et il ne rouille pas. Je n'aime pas ce qui ne rouille pas.",meche3:"Une mèche trempée dans la nacre. Elle boit l'huile comme un oiseau boit l'eau : par petites gorgées.",refl3:"Polie, cette pierre renvoie même la lumière qu'on ne lui donne pas. En bas, là où le noir appuie, tu m'en diras des nouvelles."};
+const SUIE={mat1:"De l'acier ! Enfin un canon qui ne fond pas quand tu tires trop.",mat2:"Trempé dans l'eau du puits. Ne me demande pas pourquoi elle est tiède.",mat3:"De l'argent du puits… Il chante pendant qu'on le forge. Je n'aime pas ça. Mais il tue bien.",verre1:"Ce cristal voit dans le noir. Ta lanterne aussi, maintenant.",meche2:"Du lin tressé par mes soins. Si tu le gâches, je le saurai.",chit:"Une armure en carapace de Rampant. Ils ne t'entendront plus venir. Moi si, toujours.",plaq:"De la fonte. Tu vas faire le bruit d'une casserole qui dévale un escalier. Mais tu seras vivant.",mat4:"Du fer de braise. Il reste chaud des jours entiers. Ne le pose pas sur mon établi : il est en bois.",mat5:"Ça… ça ne tinte pas. J'ai frappé dessus toute la nuit sans rien entendre. Ton canon tirera fort, et moi, je vais mal dormir.",verre2:"Du verre cuit dans la braise du fond. Ta lumière s'ouvre comme une main.",mat6:"De la nacre noire fondue dans l'acier. Il sent la vase et il ne rouille pas. Je n'aime pas ce qui ne rouille pas.",meche3:"Une mèche trempée dans la nacre. Elle boit l'huile comme un oiseau boit l'eau : par petites gorgées.",refl3:"Polie, cette pierre renvoie même la lumière qu'on ne lui donne pas. En bas, là où le noir pèse, tu m'en diras des nouvelles."};
 // ----- La Compagnie : registre de l'intendant (étages 41 à 59) -----
 WHO.inten=["Registre de l'intendant",SP.doc];
 Object.assign(PAGES,{
- logis:{f:41,t:[{w:"inten",t:"« Tant que le chantier était à une heure du jour, on remontait chaque soir. Une lampe, une pioche, un casse-croûte : ça suffisait. »"},{w:"inten",t:"« À cette profondeur, la descente prend une demi-journée. Les hommes ne remontent plus. Le matériel descend avec eux. »"}]},
- voie:{f:43,t:[{w:"inten",t:"« Voie posée jusqu'au troisième palier. Les wagonnets descendent pleins de vivres et remontent pleins de minerai. Personne ne remonte avec eux. »"}]},
+ logis:{f:41,t:[{w:"inten",t:"« Tant que le chantier était à une heure du jour, on remontait chaque soir. Une lampe, une pioche, un casse-croûte : cela suffisait. »"},{w:"inten",t:"« À cette profondeur, la descente prend une demi-journée. Les hommes ne remontent plus. Le matériel descend avec eux. »"}]},
+ voie:{f:43,t:[{w:"inten",t:"« Voie posée jusqu'au troisième palier. Les wagonnets descendent chargés de vivres et remontent chargés de minerai. Personne ne remonte avec eux. »"}]},
  lampes:{f:45,t:[{w:"inten",t:"« Le lampiste allume les réverbères à chaque relève. Sans lumière fixe, les hommes refusent d'avancer. Je les comprends. »"},{w:"inten",t:"« Il connaît chaque lampe par son nom. Il dit qu'il les entend respirer. »"}]},
- eteint:{f:47,t:[{w:"inten",t:"« Trois réverbères éteints cette semaine, derrière l'équipe. Le lampiste jure qu'il les avait remplis. »"},{w:"inten",t:"« Les hommes ont pris l'habitude de les rallumer en passant. Il suffit de rester un moment contre. »"}]},
- palans:{f:49,t:[{w:"inten",t:"« Une charge est tombée de son palan cette nuit. Personne dessous. Mais tout le fond a couru vers le bruit, et l'équipe de garde était juste à côté. »"}]},
- relais:{f:52,t:[{w:"inten",t:"« Le relais tient trois semaines de vivres. La prochaine fois, il faudra descendre aussi des bandes, des lits, un infirmier. On se blesse plus, en bas, et on guérit moins vite. »"}]},
- trainee:{f:55,t:[{w:"inten",t:"« Une carcasse en travers de la voie, traînée là exprès : la trace allait jusqu'au noir. Les bêtes sont venues la manger au milieu de l'équipe. »"},{w:"inten",t:"« Le lampiste n'est pas remonté à la relève. »"}]},
- ferme:{f:58,t:[{w:"inten",t:"« On le voit parfois au bout de la voie, sa perche à la main. Il éteint derrière nous. Il ne rallume jamais. »"},{w:"inten",t:"« Ordre de la Compagnie : fermer le registre, remonter ce qui peut l'être. Le reste reste en bas. »"}]}});
+ eteint:{f:47,t:[{w:"inten",t:"« Trois réverbères éteints cette semaine, derrière l'équipe. Le lampiste jure qu'il les avait remplis. »"},{w:"inten",t:"« Les hommes ont pris l'habitude de les rallumer en passant. Il suffit de rester un moment tout contre. »"}]},
+ palans:{f:49,t:[{w:"inten",t:"« Une charge est tombée de son palan cette nuit. Personne dessous. Mais tout le fond a couru vers le bruit, et l'équipe de garde se trouvait juste à côté. »"}]},
+ relais:{f:52,t:[{w:"inten",t:"« Le relais tient trois semaines de vivres. La prochaine fois, il faudra descendre aussi des bandages, des lits, un infirmier. En bas, on se blesse plus, et on guérit moins vite. »"}]},
+ trainee:{f:55,t:[{w:"inten",t:"« Une carcasse en travers de la voie, traînée là exprès : la trace se perdait dans le noir. Les bêtes sont venues la manger au beau milieu de l'équipe. »"},{w:"inten",t:"« Le lampiste n'est pas remonté à la relève. »"}]},
+ ferme:{f:58,t:[{w:"inten",t:"« On le voit parfois au bout de la voie, sa perche à la main. Il éteint derrière nous. Il ne rallume jamais. »"},{w:"inten",t:"« Ordre de la Compagnie : fermer le registre, remonter ce qui peut l'être. Le reste demeure en bas. »"}]}});
 MK.push("lton");MATN.lton="laiton";MATI.lton="🔩";MATS.push("Acier de la Compagnie");
-SUIE.mat7="Du laiton de la Compagnie fondu dans ton acier. Ils ont laissé là-dessous de quoi armer tout un village, et ils ne sont jamais revenus le chercher.";
-SUIE.dbl="Une doublure de leurs plaques, cousue sous ton armure. Ça pèse. Mais ce qui t'attend en bas pèse plus lourd.";
+SUIE.mat7="Du laiton de la Compagnie, fondu dans ton acier. Ils ont laissé là-dessous de quoi armer tout un village, et ils ne sont jamais revenus le chercher.";
+SUIE.dbl="Une doublure taillée dans leurs plaques, cousue sous ton armure. Ça pèse. Mais ce qui t'attend en bas pèse plus lourd.";
 const DBLC=[30000,{lton:10}],DBL_K=1.5;
 
 // ================= VILLAGE =================
@@ -2721,24 +2721,24 @@ const SPOTS={
  ciel:{lbl:()=>cstS().stone>=2?"REGARDER":"OBSERVER",name:()=>cstS().stone>=2?"Le rocher aux étoiles":"Rocher plat"},
  petard:{lbl:()=>S.un.petard?"PARLER":"OBSERVER",name:()=>S.un.petard?"Poudrière de Pétard":"Cabane noircie"}};
 const val=v=>typeof v==="function"?v():v;
-const GREET={suie:["Ah, c'est toi. Tes pas sont plus lourds qu'hier. C'est bon signe, ou très mauvais.","Approche. Montre-moi ce que tu as ramené.","Le feu de la forge n'a pas faim aujourd'hui. Moi si. Alors, ce minerai ?","Si tu cherches de la compassion, c'est la maison d'à côté. Elle est effondrée."],
- petard:["Tiens, ne touche pas à ça. Ni à ça. En fait ne touche à rien, prends ce que je te donne.","Tu as entendu le BOUM de ce matin ? Non ? Tant mieux, c'était rien.","Une grenade bien lancée, c'est comme une lettre d'amour : ça part, et ça change tout."],
- lisa:["Mamie dit que je n'ai plus le droit d'approcher du puits. Elle l'a dit en regardant ailleurs, alors je crois qu'elle a eu très peur.","J'ai dessiné la grande porte. Et toi devant. Tu es le bonhomme avec la lumière.","Tu fredonnes faux. Mais les bêtes ne sont pas difficiles."],
- lisa2:["Tu la chantes presque bien, maintenant. Presque.","Mamie a ressorti le cheval bleu de l'étagère. Elle l'a posé sur la table, et depuis elle ne dit plus rien.","Celui qui chante, en bas, il a froid ? Je lui ai tricoté une écharpe. Elle est un peu longue. Très longue."],
- grelot:["Grelot, ingénieur, à ton service ! La mine ronronne. Enfin, elle tousse, mais joyeusement.","Attention, ce wagonnet freine… en théorie.","J'ai une idée géniale ! …Non, je l'ai perdue. Une autre fois."]};
+const GREET={suie:["Ah, c'est toi. Tes pas sont plus lourds qu'hier. C'est bon signe. Ou très mauvais.","Approche. Montre-moi ce que tu as ramené.","Le feu de la forge n'a pas faim, aujourd'hui. Moi, si. Alors, ce minerai ?","Si tu cherches de la compassion, c'est la maison d'à côté. Elle s'est effondrée."],
+ petard:["Ne touche pas à ça. Ni à ça. En fait, ne touche à rien : prends ce que je te donne.","Tu as entendu le BOUM de ce matin ? Non ? Tant mieux. Ce n'était rien.","Une grenade bien lancée, c'est comme une lettre d'amour : ça part, et ça change tout."],
+ lisa:["Mamie dit que je n'ai plus le droit d'approcher du puits. Elle l'a dit en regardant ailleurs. Je crois qu'elle a eu très peur.","J'ai dessiné la grande porte. Et toi devant. C'est toi, le bonhomme avec la lumière.","Tu fredonnes faux. Mais les bêtes ne sont pas difficiles."],
+ lisa2:["Tu la chantes presque bien, maintenant. Presque.","Mamie a ressorti le cheval bleu de l'étagère. Elle l'a posé sur la table, et depuis elle ne dit plus rien.","Celui qui chante, en bas, il a froid ? Je lui ai tricoté une écharpe. Elle est un peu longue. Très longue, même."],
+ grelot:["Grelot, ingénieur, pour vous servir ! La mine ronronne. Enfin, elle tousse, mais joyeusement.","Attention, ce wagonnet freine… en théorie.","J'ai une idée géniale ! …Non, je l'ai perdue. Une autre fois."]};
 const pick=a=>a[Math.floor(Math.random()*a.length)];
 function villageAct(){
  const sp=V.near;if(!sp)return;inp.jx=inp.jy=0;inp.jid=null;V.walk=null;
  if(sp==="forge"){if(!S.un.atelier){say([{w:"suie",t:"Pas maintenant. Descends d'abord. On parlera quand tu sentiras la poussière."}]);return}say([{w:"suie",t:pick(GREET.suie.filter((t,i)=>!(S.un.lise&&i===3)))}],()=>openPanel("forge"))}
- else if(sp==="mine"){if(!S.un.mine){say([{w:"moi",t:"La vieille mine. L'entrée est barricadée avec des planches pourries."}]);return}say([{w:"grelot",t:pick(GREET.grelot)}],()=>openPanel("mine"))}
+ else if(sp==="mine"){if(!S.un.mine){say([{w:"moi",t:"La vieille mine. L'entrée est condamnée par des planches pourries."}]);return}say([{w:"grelot",t:pick(GREET.grelot)}],()=>openPanel("mine"))}
  else if(sp==="well")openPanel("well");
  else if(sp==="ciel"){if(cstS().stone<2)say([{w:"moi",t:"Un rocher plat, tiède. On y verrait bien le ciel."}]);else skyOpen(false)}
  else if(sp==="echo"){if(!S.un.echos){say([{w:"moi",t:"Un tas de pierres. Il fait étrangement froid, juste ici."}]);return}openPanel("echos")}
  else if(sp==="lise"&&S.un.lise)say([{w:"lisa",t:pick(S.un.fin2?GREET.lisa2:GREET.lisa)}],()=>openPanel("lise"));
- else if(sp==="lise")say([{w:"moi",t:"Une maison aux volets bleus, à moitié effondrée. Il y a des dessins d'enfant sur le mur du fond."}]);
+ else if(sp==="lise")say([{w:"moi",t:"Une maison aux volets bleus, à moitié effondrée. Des dessins d'enfant couvrent le mur du fond."}]);
  else if(sp==="ossian")say([{w:"moi",t:"Une tour penchée. Des cartes déchirées volettent à l'intérieur. Toutes montrent des escaliers."}]);
  else if(sp==="petard"&&S.un.petard)say([{w:"petard",t:pick(GREET.petard)}],()=>openPanel("poudre"));
- else if(sp==="petard")say([{w:"moi",t:"Une cabane noircie. Ça sent encore la poudre. Il y a… un doigt ? Non. Une carotte. Je crois."}]);
+ else if(sp==="petard")say([{w:"moi",t:"Une cabane noircie. Ça sent encore la poudre. Il y a… un doigt ? Non. Une carotte. Sans doute."}]);
 }
 function villageTap(cx,cy){if(!VIEW)return;const wx=((cx*DPR-VIEW.offx)/VIEW.sc+VIEW.ox)/T,wy=((cy*DPR-VIEW.offy)/VIEW.sc+VIEW.oy)/T;
  for(const b of VB){if(wx>=b.x-.5&&wx<=b.x+b.w+.5&&wy>=b.y-1&&wy<=b.y+b.h+1.2){V.walk={x:b.pt.x,y:b.pt.y,id:b.id};return}}}
@@ -2794,18 +2794,18 @@ function openPanel(k){
  }
  else if(k==="mine"){const cst=mineCost(S.mine),mx=S.mine>=10;h=`<h2>⛏ Mine de Grelot</h2><div class="it"><div>Niveau ${S.mine}<small>${MINE[S.mine]} ⛏/h${mx?"":" → "+MINE[S.mine+1]+" ⛏/h"} · le sac devant l'entrée se remplit jusqu'à 12 h</small></div><button class="b" id="mineup" ${mx||S.ore<cst?"disabled":""}>${mx?"MAX":fmt(cst)+" ⛏"}</button></div>`}
  else if(k==="echos"){h=`<h2>👻 Pierre des Échos</h2><div class="sub" style="text-align:left">On entend murmurer, tout bas.</div>`+(S.echoes.length?S.echoes.map(e=>`<div class="it"><div>${e.first?"Le Premier Écho":"Écho de l'étage "+e.floor}${e.calm?" · apaisé":" · tourmenté"}<small>${e.calm?"creuse "+echoRate(e).toFixed(1)+" ⛏/h":"il t'attend à l'étage "+e.floor+" et ne creuse pas"}</small></div></div>`).join(""):`<div class="it">Silence… pour l'instant.</div>`)}
- else if(k==="well"){h=`<h2>🕳 Le puits</h2><div class="sub" style="text-align:left">Record : étage ${S.best}. Un souffle tiède remonte du fond.</div><div class="btns" style="display:flex;flex-direction:column;gap:8px;margin-top:10px">`;
+ else if(k==="well"){h=`<h2>🕳 Le puits</h2><div class="sub" style="text-align:left">Record : étage ${S.best}. Un souffle tiède monte du fond.</div><div class="btns" style="display:flex;flex-direction:column;gap:8px;margin-top:10px">`;
   if(S.run)h+=`<button class="b big" id="go">⬇ REPRENDRE · ÉTAGE ${S.run.floor}</button>`;
-  else{h+=`<button class="b big" id="go">⬇ DESCENDRE${S.day!==today()?" · ✨ reposé":""}</button>`;if(S.un.monte&&S.best>=5){const fl=[5].concat(S.un.monte2?[11]:[],S.un.monte3?[16]:[],S.un.monte4?[21]:[],S.un.monte5?[31]:[],S.un.monte6?[41]:[]);h+=`<div style="font-size:12px;opacity:.75;text-align:left">🛗 Monte-charge de Grelot</div><div class="row" style="flex-wrap:wrap">`+fl.map(f=>`<button class="b" data-lift="${f}" style="flex:1 0 27%;padding:12px">étage ${f}</button>`).join("")+`</div>`}}
+  else{h+=`<button class="b big" id="go">⬇ DESCENDRE</button>`;if(S.un.monte&&S.best>=5){const fl=[5].concat(S.un.monte2?[11]:[],S.un.monte3?[16]:[],S.un.monte4?[21]:[],S.un.monte5?[31]:[],S.un.monte6?[41]:[]);h+=`<div style="font-size:12px;opacity:.75;text-align:left">🛗 Monte-charge de Grelot</div><div class="row" style="flex-wrap:wrap">`+fl.map(f=>`<button class="b" data-lift="${f}" style="flex:1 0 27%;padding:12px">étage ${f}</button>`).join("")+`</div>`}}
   h+=`</div>`}
  else if(k==="poudre"){h=`<h2>💣 Poudrière de Pétard</h2><div class="sub" style="text-align:left">⛏ ${fmt(S.ore)} · ${matStr(S.mat)}</div>`+Object.entries(GAD).map(([kk,g])=>{const l=S.gad[kk],own=l>=0,eq=S.gad.eq===kk,c=own?(l>=3?null:g.up(l)):g.buy;
    return`<div class="it"><div>${g.i} ${g.n}${own?" · niv "+l:""}${eq?" ✓":""}<small>${g.d}${own?" · "+(2+l)+" charges":""}</small></div><div style="display:flex;gap:4px">${own&&!eq?`<button class="b" data-geq="${kk}">Équiper</button>`:""}<button class="b" data-gad="${kk}" ${!c||!canPay(c)?"disabled":""}>${!c?"MAX":(own?"":"Fabriquer ")+costStr(c)}</button></div></div>`}).join("")}
  else if(k==="stats"){const r=S.st.reach,ks=Object.keys(r).map(Number).sort((a,b)=>a-b);
   h=`<h2>📊 Statistiques</h2><div class="it"><div>Temps de jeu total</div><div>${fmtT(S.st.tot)}</div></div><div class="it"><div>Dans le puits</div><div>${fmtT(S.st.pts)}</div></div><div class="it"><div>Record</div><div>étage ${S.best}</div></div><div class="it"><div>Descentes · morts</div><div>${S.runs} · ${S.deaths}</div></div><div class="it"><div>Ennemis vaincus</div><div>${S.st.kills}</div></div><div class="it"><div>Mineurs sauvés</div><div>${S.st.saved}</div></div>`+
   (ks.length?`<div style="margin-top:10px;font-size:12px;color:#ffcf7a">Paliers atteints</div>`+ks.map(f=>`<div class="it"><div>Étage ${f}</div><div style="font-size:11px">${fmtT(r[f].t)} <span style="opacity:.6">(puits ${fmtT(r[f].p)} · ${r[f].d} morts)</span></div></div>`).join(""):"")+
-  `<button class="b" id="cpst" style="width:100%;margin-top:10px;padding:10px">📋 Copier mes stats </button><textarea id="cpta" class="hide" readonly style="width:100%;height:70px;margin-top:6px;background:#0a0806;color:#e8dcc4;border:1px solid #e8a33c55;font-size:10px"></textarea>`}
+  `<button class="b" id="cpst" style="width:100%;margin-top:10px;padding:10px">📋 Copier mes stats</button><textarea id="cpta" class="hide" readonly style="width:100%;height:70px;margin-top:6px;background:#0a0806;color:#e8dcc4;border:1px solid #e8a33c55;font-size:10px"></textarea>`}
  else if(k==="save"){const si=n=>{try{const t=localStorage.getItem(n===2?"lanterne_v1_b":"lanterne_v1");if(!t)return null;const o=JSON.parse(t);return"étage "+(o.best||0)+" · "+fmtT((o.st&&o.st.tot)||0)}catch(e){return null}};
-  h=`<h2>💾 Sauvegardes</h2>`+[1,2].map(n=>{const cur=n===SLOT,i=cur?"étage "+S.best+" · "+fmtT(S.st.tot):si(n);return`<div class="it"><div>Partie ${n}${cur?" ✓":""}<small>${i||"vide"}${cur?" · en cours":""}</small></div>${cur?"":`<button class="b" data-slot="${n}">${i?"Jouer":"Commencer"}</button>`}</div>`}).join("")+`<div style="font-size:12px;color:#ffcf7a;margin-top:12px;text-align:left">Code de secours · partie ${SLOT}</div><p style="font-size:12px;opacity:.8">Copie ce code et garde-le (notes, message à toi-même). Pour restaurer ta partie, colle-le dans la case du dessous.</p><button class="b" id="exp" style="width:100%;padding:10px">📋 Copier mon code</button><textarea id="expta" readonly class="hide" style="width:100%;height:60px;margin-top:6px;background:#0a0806;color:#e8dcc4;border:1px solid #e8a33c55;font-size:9px"></textarea><textarea id="impta" placeholder="Colle un code ici…" style="width:100%;height:60px;margin-top:12px;background:#0a0806;color:#e8dcc4;border:1px solid #e8a33c55;font-size:10px;user-select:text;-webkit-user-select:text"></textarea><button class="b" id="imp" style="width:100%;padding:10px;margin-top:6px">📥 Charger ce code</button>`}
+  h=`<h2>💾 Sauvegardes</h2>`+[1,2].map(n=>{const cur=n===SLOT,i=cur?"étage "+S.best+" · "+fmtT(S.st.tot):si(n);return`<div class="it"><div>Partie ${n}${cur?" ✓":""}<small>${i||"vide"}${cur?" · en cours":""}</small></div>${cur?"":`<button class="b" data-slot="${n}">${i?"Jouer":"Commencer"}</button>`}</div>`}).join("")+`<div style="font-size:12px;color:#ffcf7a;margin-top:12px;text-align:left">Code de secours · partie ${SLOT}</div><p style="font-size:12px;opacity:.8">Copie ce code et mets-le à l'abri (notes, message à toi-même). Pour restaurer ta partie, colle-le dans la case ci-dessous.</p><button class="b" id="exp" style="width:100%;padding:10px">📋 Copier mon code</button><textarea id="expta" readonly class="hide" style="width:100%;height:60px;margin-top:6px;background:#0a0806;color:#e8dcc4;border:1px solid #e8a33c55;font-size:9px"></textarea><textarea id="impta" placeholder="Colle un code ici…" style="width:100%;height:60px;margin-top:12px;background:#0a0806;color:#e8dcc4;border:1px solid #e8a33c55;font-size:10px;user-select:text;-webkit-user-select:text"></textarea><button class="b" id="imp" style="width:100%;padding:10px;margin-top:6px">📥 Charger ce code</button>`}
  else if(k==="lise"){ // la boîte de Lise : tout ce que tu as trouvé en bas, à relire
   const bt=(rd,l)=>`<button class="b" data-rd="${rd}" style="padding:9px 0;min-width:44px;flex:0 0 auto">${l}</button>`,grp=(t,a)=>a.length?`<div style="font-size:12px;color:#ffcf7a;margin-top:10px;text-align:left">${t}</div><div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:4px">${a.join("")}</div>`:"";
   const pg=Object.entries(PAGES).filter(([q])=>S.seen["pg_"+q]).sort((a,b)=>a[1].f-b[1].f).map(([q,p])=>bt("pg:"+q,"é."+p.f));
@@ -2830,7 +2830,7 @@ function openPanel(k){
  sh.querySelectorAll("[data-rd]").forEach(b=>b.onclick=()=>{const[t,q]=b.dataset.rd.split(":");closePanel();say(t==="pg"?PAGES[q].t:t==="lt"?(q==="1"?LETTER:LETTER2):[{w:"doc",t:(t==="d2"?DOCS2:DOCS)[+q]}],()=>openPanel("lise"))});
  sh.querySelectorAll("[data-up]").forEach(b=>b.onclick=()=>{const kk=b.dataset.up,cst=UPS[kk].cost(S.up[kk]);if(canPay(cst)){pay(cst);S.up[kk]++;save();SFX.pick();openPanel(k);vhud();const ln=SUIE[kk+S.up[kk]];if(ln)say([{w:"suie",t:ln}]);if(kk==="mat")refreshVillage()}});
  if($("dbl"))$("dbl").onclick=()=>{if(S.dbl||!canPay(DBLC))return;pay(DBLC);S.dbl=1;save();SFX.pick();openPanel(k);vhud();say([{w:"suie",t:SUIE.dbl}])};
- if($("muz"))$("muz").onclick=()=>{const first=!S.muz;if(first){if(!canPay(MUZC))return;pay(MUZC);S.muz=2}else S.muz=S.muz===2?1:2;save();SFX.pick();openPanel(k);vhud();if(first)say([{w:"suie",t:"Une bouche étouffée. Ton canon ne criera plus, il toussera. Il mordra un peu moins fort, aussi. On n'a rien sans rien."}])};
+ if($("muz"))$("muz").onclick=()=>{const first=!S.muz;if(first){if(!canPay(MUZC))return;pay(MUZC);S.muz=2}else S.muz=S.muz===2?1:2;save();SFX.pick();openPanel(k);vhud();if(first)say([{w:"suie",t:"Une bouche étouffée. Ton canon ne criera plus : il toussera. Il mordra un peu moins fort, aussi. On n'a rien sans rien."}])};
  sh.querySelectorAll("[data-tab]").forEach(b=>b.onclick=()=>{atTab=b.dataset.tab;openPanel(k)});
  sh.querySelectorAll("[data-eq]").forEach(b=>b.onclick=()=>{S.arm.eq=b.dataset.eq;save();openPanel(k)});
  sh.querySelectorAll("[data-arm]").forEach(b=>b.onclick=()=>{const kk=b.dataset.arm,l=S.arm[kk],cst=l>=0?armUpCost(kk,l):ARMBUY[kk];if(canPay(cst)){pay(cst);if(l<0){S.arm[kk]=0;S.arm.eq=kk;if(SUIE[kk])say([{w:"suie",t:SUIE[kk]}])}else S.arm[kk]++;save();SFX.pick();openPanel(k);vhud()}});
@@ -2843,23 +2843,23 @@ function closePanel(){$("sheet").classList.add("hide");panelK=null;if($("dlg").c
 function bank(){const p=passive();S.ore+=Math.floor(p.m+p.e);S.lastM=S.lastE=S.last=Date.now()}
 function checkUnlocks(dead){
  const steps=[];
- if(!S.un.atelier)steps.push(["atelier",[{w:"suie",t:"Tu es revenu. Bien. Tu sens le sang de Rampant, c'est mieux que de sentir le tien."},{w:"suie",t:"Ramène-moi du minerai et je t'améliore ce vieux canon. Et ne mens pas sur la quantité : je l'entends tinter dans ton sac."}],"🔓 Atelier de Mamie Suie","<p>Avec le minerai et les restes des monstres (🦂 chitine, 🧪 glande, 💎 cristal), Mamie Suie améliore ton canon, ta lanterne et ton armure.</p><p>La matière du canon limite tout le reste : plus elle est noble, plus tu peux pousser le calibre et le mécanisme.</p>"]);
- if(dead&&!S.un.echos)steps.push(["echos",[{w:"echo",t:"…tiens. C'est toi. Ou c'est moi. Le puits ne fait pas bien la différence."},{w:"echo",t:"Je reste en bas. Je ne trouve pas le repos. Viens me chercher… et je creuserai pour toi."},{w:"suie",t:"…Tu as entendu ça aussi ? Non. Rien. Laisse."}],"🔓 Les Échos","<p>Chaque mort laisse un Écho à l'étage où tu es tombé. Il naît tourmenté et ne fait rien.</p><p>Redescends jusqu'à son étage et retrouve-le : une fois apaisé, il creuse pour toi, même quand tu ne joues pas. Plus il est profond, plus il rapporte.</p><p>3 Échos maximum. La récolte s'accumule jusqu'à 12 h.</p>"]);
- if(!S.un.mine&&(S.runs>=2||S.best>=3))steps.push(["mine",[{w:"grelot",t:"Salut, salut ! Grelot, ingénieur diplômé ! …Diplômé par moi-même, mais diplômé quand même."},{w:"grelot",t:"J'ai remis la vieille mine en marche. Elle a explosé une seule fois, et c'était pendant un test, donc ça ne compte pas."},{w:"grelot",t:"Elle creuse quand tu n'es pas là. Mets-y du minerai, je la rends plus rapide. Promis, pas d'explosion. Presque promis."}],"🔓 La mine de Grelot","<p>Elle produit du minerai pendant ton absence, jusqu'à 12 h. Améliore-la pour qu'elle produise plus.</p><p>Pas de notification : tu récoltes quand tu reviens.</p>"]);
- if(!S.un.petard&&S.best>=8)steps.push(["petard",[{w:"petard",t:"BOUM ! …Pardon. Salut ! Pétard, ancien artificier de la Compagnie. Il me reste sept doigts, ce qui est un excellent score dans le métier."},{w:"petard",t:"J'ai retapé ma cabane, la noircie, près du puits. Ramène-moi de la glande de Cracheur : ça fait une poudre formidable. Et de la chitine pour les coques."},{w:"petard",t:"Grenades, leurres, fumigènes… Mode d'emploi : tu lances, et tu cours. Surtout, tu cours."}],"🔓 La poudrière de Pétard","<p>Fabrique un gadget et équipe-le : un bouton apparaît pendant tes descentes.</p><p>Tu as quelques charges par descente, et tu en regagnes une à chaque nouvel étage.</p>"]);
- if(!S.un.monte&&S.best>=5)steps.push(["monte",[{w:"grelot",t:"Grande nouvelle ! J'ai bricolé un monte-charge jusqu'à l'étage 5 ! Il a marché deux fois sur trois. La troisième fois… c'était le test, encore."}],"🔓 Le monte-charge","<p>Tu peux maintenant commencer une descente directement à l'étage 5.</p>"]);
- if(S.lise&&!S.un.lise)steps.push(["lise",[{w:"suie",t:"…Ce pas-là. Petit, léger, qui traîne du pied gauche. Lise ?"},{w:"lisa",t:"Mamie ! J'ai vu la grande porte ! Et j'ai presque trouvé Papa !"},{w:"suie",t:"…"},{w:"suie",t:"Toi. Tu me l'as remontée. Je ne dis jamais merci, alors écoute bien, parce que je ne le redirai pas : merci."}],"🔓 La maison aux volets bleus","<p>Lise est rentrée, et le village a relevé sa maison.</p><p>Elle garde dans sa boîte tout ce que tu trouves en bas : pages de carnet, lettres, papiers de la Compagnie. Tu peux les relire chez elle.</p><p>Elle t'a appris le début de sa chanson. Quand tu la fredonnes, les créatures doutent un peu plus longtemps avant de donner l'alerte.</p>"]);
- if(S.won&&!S.un.monte2)steps.push(["monte2",[{w:"grelot",t:"J'ai rallongé le câble ! Il descend maintenant jusque sous la grande porte. Ne me demande pas comment je l'ai fait passer devant Elle."},{w:"grelot",t:"Indice : très vite, et en criant."}],"🔓 Monte-charge · étage 11","<p>Tu peux commencer une descente directement à l'étage 11, sous la grande porte.</p>"]);
- if(S.best>=16&&!S.un.monte3)steps.push(["monte3",[{w:"grelot",t:"Le câble descend encore plus bas ! Il fait maintenant un bruit de violoncelle. C'est nouveau, donc c'est peut-être normal."}],"🔓 Monte-charge · étage 16","<p>Tu peux commencer une descente directement à l'étage 16.</p>"]);
- if(S.won2&&!S.un.fin2)steps.push(["fin2",[{w:"suie",t:"Tu fredonnes. …Où as-tu appris cet air ?"},{w:"suie",t:"Mon fils le chantait à la petite. Personne d'autre ne le connaissait."},{w:"suie",t:"Non. Ne me dis pas qui te l'a appris. Pas encore. Redescends, et rapporte-moi la suite."}].concat(S.un.lise||S.lise?[{w:"lisa",t:"C'est le premier couplet ! Papa disait qu'il y en a autant que de portes. Je n'ai jamais su combien il y a de portes."}]:[]),"👑 Le premier couplet","<p>Tu connais le premier couplet de la chanson du cheval bleu : les créatures doutent nettement plus longtemps avant de donner l'alerte.</p><p>Le Premier Écho s'est apaisé. Il creuse pour toi, tout au fond, comme les autres Échos.</p><p style='opacity:.7'>Sous la Chambre du Chant, l'escalier continue.</p>"]);
+ if(!S.un.atelier)steps.push(["atelier",[{w:"suie",t:"Te revoilà. Bien. Tu sens le sang de Rampant ; c'est mieux que de sentir le tien."},{w:"suie",t:"Rapporte-moi du minerai, et je t'améliorerai ce vieux canon. Et ne mens pas sur la quantité : je l'entends tinter dans ton sac."}],"🔓 Atelier de Mamie Suie","<p>Avec le minerai et les restes des monstres (🦂 chitine, 🧪 glande, 💎 cristal), Mamie Suie améliore ton canon, ta lanterne et ton armure.</p><p>La matière du canon limite tout le reste : plus elle est noble, plus tu peux pousser le calibre et le mécanisme.</p>"]);
+ if(dead&&!S.un.echos)steps.push(["echos",[{w:"echo",t:"…Tiens. C'est toi. Ou c'est moi. Le puits ne fait pas bien la différence."},{w:"echo",t:"Je reste en bas. Je ne trouve pas le repos. Viens me chercher… et je creuserai pour toi."},{w:"suie",t:"…Tu as entendu ça aussi ? Non. Rien. Laisse."}],"🔓 Les Échos","<p>Chaque mort laisse un Écho à l'étage où tu es tombé. Il naît tourmenté et ne fait rien.</p><p>Redescends jusqu'à son étage pour le retrouver : une fois apaisé, il creuse pour toi, même quand tu ne joues pas. Plus il est profond, plus il rapporte.</p><p>3 Échos au maximum. La récolte s'accumule jusqu'à 12 h.</p>"]);
+ if(!S.un.mine&&(S.runs>=2||S.best>=3))steps.push(["mine",[{w:"grelot",t:"Salut, salut ! Grelot, ingénieur diplômé ! …Diplômé par moi-même, mais diplômé quand même."},{w:"grelot",t:"J'ai remis la vieille mine en marche. Elle n'a explosé qu'une fois, et c'était pendant un essai, alors ça ne compte pas."},{w:"grelot",t:"Elle creuse quand tu n'es pas là. Donne-moi du minerai, et je la rendrai plus rapide. Promis, pas d'explosion. Presque promis."}],"🔓 La mine de Grelot","<p>Elle produit du minerai pendant ton absence, jusqu'à 12 h. Améliore-la pour qu'elle produise davantage.</p><p>Aucune notification : tu récoltes à ton retour.</p>"]);
+ if(!S.un.petard&&S.best>=8)steps.push(["petard",[{w:"petard",t:"BOUM ! …Pardon. Salut ! Pétard, ancien artificier de la Compagnie. Il me reste sept doigts, ce qui est un score excellent dans le métier."},{w:"petard",t:"J'ai retapé ma cabane, la noircie, près du puits. Rapporte-moi de la glande de Cracheur : on en tire une poudre formidable. Et de la chitine, pour les coques."},{w:"petard",t:"Grenades, leurres, fumigènes… Mode d'emploi : tu lances, et tu cours. Surtout, tu cours."}],"🔓 La poudrière de Pétard","<p>Fabrique un gadget et équipe-le : un bouton apparaît pendant tes descentes.</p><p>Tu as quelques charges par descente, et tu en regagnes une à chaque nouvel étage.</p>"]);
+ if(!S.un.monte&&S.best>=5)steps.push(["monte",[{w:"grelot",t:"Grande nouvelle ! J'ai bricolé un monte-charge jusqu'à l'étage 5 ! Il a fonctionné deux fois sur trois. La troisième… c'était encore un essai."}],"🔓 Le monte-charge","<p>Tu peux maintenant commencer une descente directement à l'étage 5.</p>"]);
+ if(S.lise&&!S.un.lise)steps.push(["lise",[{w:"suie",t:"…Ce pas-là. Petit, léger, qui traîne du pied gauche. Lise ?"},{w:"lisa",t:"Mamie ! J'ai vu la grande porte ! Et j'ai presque trouvé Papa !"},{w:"suie",t:"…"},{w:"suie",t:"Toi. Tu me l'as ramenée. Je ne dis jamais merci, alors écoute bien, car je ne le répéterai pas : merci."}],"🔓 La maison aux volets bleus","<p>Lise est rentrée, et le village a relevé sa maison.</p><p>Elle garde dans sa boîte tout ce que tu trouves en bas : pages de carnet, lettres, papiers de la Compagnie. Tu peux les relire chez elle.</p><p>Elle t'a appris le début de sa chanson. Quand tu la fredonnes, les créatures doutent un peu plus longtemps avant de donner l'alerte.</p>"]);
+ if(S.won&&!S.un.monte2)steps.push(["monte2",[{w:"grelot",t:"J'ai rallongé le câble ! Il descend maintenant jusque sous la grande porte. Ne me demande pas comment je l'ai fait passer devant Elle."},{w:"grelot",t:"Indice : très vite, et en hurlant."}],"🔓 Monte-charge · étage 11","<p>Tu peux commencer une descente directement à l'étage 11, sous la grande porte.</p>"]);
+ if(S.best>=16&&!S.un.monte3)steps.push(["monte3",[{w:"grelot",t:"Le câble descend encore plus bas ! Il fait maintenant un bruit de violoncelle. C'est nouveau. Donc c'est peut-être normal."}],"🔓 Monte-charge · étage 16","<p>Tu peux commencer une descente directement à l'étage 16.</p>"]);
+ if(S.won2&&!S.un.fin2)steps.push(["fin2",[{w:"suie",t:"Tu fredonnes… Où as-tu appris cet air ?"},{w:"suie",t:"Mon fils le chantait à la petite. Personne d'autre ne le connaissait."},{w:"suie",t:"Non. Ne me dis pas qui te l'a appris. Pas encore. Redescends, et rapporte-moi la suite."}].concat(S.un.lise||S.lise?[{w:"lisa",t:"C'est le premier couplet ! Papa disait qu'il y en a autant que de portes. Je n'ai jamais su combien il y avait de portes."}]:[]),"👑 Le premier couplet","<p>Tu connais le premier couplet de la chanson du cheval bleu : les créatures doutent nettement plus longtemps avant de donner l'alerte.</p><p>Le Premier Écho s'est apaisé. Il creuse pour toi, tout au fond, comme les autres Échos.</p><p style='opacity:.7'>Sous la Chambre du Chant, l'escalier continue.</p>"]);
  if(S.won2&&!S.un.monte4)steps.push(["monte4",[{w:"grelot",t:"J'ai fait passer le câble sous la Chambre du Chant ! Il en remonte mouillé. Je préfère ne pas savoir pourquoi."}],"🔓 Monte-charge · étage 21","<p>Tu peux commencer une descente directement à l'étage 21.</p>"]);
- if(S.best>=31&&!S.un.monte5)steps.push(["monte5",[{w:"grelot",t:"Trente et un ! Le câble est si long qu'il faut une journée pour le dérouler. Enfin, une minute. Mais une très longue minute."}],"🔓 Monte-charge · étage 31","<p>Tu peux commencer une descente directement à l'étage 31.</p>"]);
- if(S.won3&&!S.un.monte6)steps.push(["monte6",[{w:"grelot",t:"Quarante et un ! Sous l'écluse, j'ai trouvé un câble de la Compagnie. Il est meilleur que le mien. Ne le dis pas au mien."}],"🔓 Monte-charge · étage 41","<p>Tu peux commencer une descente directement à l'étage 41.</p>"]);
- if(S.won3&&!S.un.fin3)steps.push(["fin3",[{w:"suie",t:"Tu sens l'eau de la grande écluse. Cette odeur-là, je l'ai gardée cinquante ans dans le nez."},{w:"suie",t:"Oui, j'y suis descendue. J'avais dix-sept ans, et deux yeux qui marchaient."},{w:"suie",t:"Pourquoi, et pour qui : pas aujourd'hui. Fredonne-moi plutôt le couplet. …Tu chantes faux. Lui aussi chantait faux."}].concat(S.un.lise||S.lise?[{w:"lisa",t:"Deux couplets ! Mamie, pourquoi tu pleures ?"},{w:"suie",t:"Je ne pleure pas. C'est la fumée de la forge."}]:[]),"👑 Le deuxième couplet","<p>Tu connais le deuxième couplet du cheval bleu : tu nages plus vite, et ce qui vit sous l'eau te sent de moins loin.</p><p style='opacity:.7'>Sous l'écluse, l'escalier continue.</p>"]);
+ if(S.best>=31&&!S.un.monte5)steps.push(["monte5",[{w:"grelot",t:"Trente et un ! Le câble est si long qu'il faut une journée pour le dérouler. Enfin, une minute. Mais une très, très longue minute."}],"🔓 Monte-charge · étage 31","<p>Tu peux commencer une descente directement à l'étage 31.</p>"]);
+ if(S.won3&&!S.un.monte6)steps.push(["monte6",[{w:"grelot",t:"Quarante et un ! Sous l'écluse, j'ai trouvé un câble de la Compagnie. Il est meilleur que le mien. Ne le répète pas au mien."}],"🔓 Monte-charge · étage 41","<p>Tu peux commencer une descente directement à l'étage 41.</p>"]);
+ if(S.won3&&!S.un.fin3)steps.push(["fin3",[{w:"suie",t:"Tu sens l'eau de la grande écluse. Cette odeur-là, je l'ai gardée cinquante ans dans le nez."},{w:"suie",t:"Oui, j'y suis descendue. J'avais dix-sept ans, et deux yeux qui voyaient."},{w:"suie",t:"Pourquoi, et pour qui ? Pas aujourd'hui. Fredonne-moi plutôt le couplet. …Tu chantes faux. Lui aussi chantait faux."}].concat(S.un.lise||S.lise?[{w:"lisa",t:"Deux couplets ! Mamie, pourquoi tu pleures ?"},{w:"suie",t:"Je ne pleure pas. C'est la fumée de la forge."}]:[]),"👑 Le deuxième couplet","<p>Tu connais le deuxième couplet du cheval bleu : tu nages plus vite, et ce qui vit sous l'eau te sent de moins loin.</p><p style='opacity:.7'>Sous l'écluse, l'escalier continue.</p>"]);
  const go=i=>{const st=steps[i];if(!st){airLesson();return}bank();S.un[st[0]]=1;save();refreshVillage();say(st[1],()=>pop(st[2],st[3],[["Compris ✓",()=>go(i+1)]]))};
  go(0);
 }
-function pauseMenu(){if(state!=="play")return;paused=true;pop("Pause","<p>Étage "+L.f+" · ⛏ "+fmt(run.loot)+" "+matStr(run.mat,true)+"</p><p style='color:#d9c9a3'>"+HUDS.o+"</p><p style='opacity:.7'>Si tu quittes, tu reprendras au début de cet étage avec ce que tu portais en y entrant.</p>",[["▶ Reprendre",null],["🏘 Quitter (partie gardée)",()=>enterVillage()]])}
+function pauseMenu(){if(state!=="play")return;paused=true;pop("Pause","<p>Étage "+L.f+" · ⛏ "+fmt(run.loot)+" "+matStr(run.mat,true)+"</p><p style='color:#d9c9a3'>"+HUDS.o+"</p><p style='opacity:.7'>Si tu quittes, tu reprendras au début de cet étage, avec ce que tu portais en y entrant.</p>",[["▶ Reprendre",null],["🏘 Quitter (partie gardée)",()=>enterVillage()]])}
 
 // ================= DÉMARRAGE =================
 enterVillage();
